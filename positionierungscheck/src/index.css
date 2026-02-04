@@ -9,6 +9,13 @@
   --color-yellow: #E7E44D;
   --color-orange: #F39401;
   --color-green: #39A958;
+  --color-cinema-bg: #0A0F1A;
+  --color-cinema-surface: #111827;
+  --color-cinema-surface-light: #1A2332;
+  --color-cinema-text: #F1F5F9;
+  --color-cinema-text-secondary: #94A3B8;
+  --color-cinema-text-muted: #475569;
+  --font-titillium: 'Titillium Web', system-ui, sans-serif;
 }
 
 @layer base {

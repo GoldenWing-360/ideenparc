@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const variants = [
   {
-    id: 'variante-a',
+    id: 'card-stepper',
     title: 'Card Stepper',
     subtitle: 'App-Feeling',
     description:
@@ -13,7 +13,7 @@ const variants = [
     features: ['Eine Frage pro Screen', 'Slide-Animationen', 'Dot-Navigation', 'Tastatur-Support'],
   },
   {
-    id: 'variante-b',
+    id: 'scroll',
     title: 'Scroll Journey',
     subtitle: 'Long-Page',
     description:
@@ -23,7 +23,7 @@ const variants = [
     features: ['Alle Blöcke sichtbar', 'Accordion-Sektionen', 'Sticky Fortschritt', 'Smooth Scroll'],
   },
   {
-    id: 'variante-c',
+    id: 'wizard',
     title: 'Multi-Step Wizard',
     subtitle: 'Formular-Stil',
     description:
@@ -33,7 +33,7 @@ const variants = [
     features: ['5-Schritte-Anzeige', 'Block-weise Bearbeitung', 'Übersichtlich', 'Fade-Animationen'],
   },
   {
-    id: 'variante-d',
+    id: 'focus',
     title: 'Focus Mode',
     subtitle: 'Typeform-Stil',
     description:
@@ -41,6 +41,16 @@ const variants = [
     icon: '🎯',
     color: '#39A958',
     features: ['Fullscreen-Layout', 'Farbwechsel', 'Cinematic Reveal', 'Keyboard-First'],
+  },
+  {
+    id: 'cinematic',
+    title: 'Premium Cinematic',
+    subtitle: 'Apple × Netflix',
+    description:
+      'Ultra-clean, dunkel, cinematisch. Viel Luft, große Typografie, dramatische Reveals. Premium-Feeling das Vertrauen schafft.',
+    icon: '🎬',
+    color: '#0A2540',
+    features: ['Dark Mode', 'Titillium Web', 'Cinematic Reveal', 'Premium-Design'],
   },
 ];
 
@@ -71,10 +81,10 @@ export default function Home() {
             <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
               Positionierungscheck
               <br />
-              <span className="text-primary">4 Varianten zur Auswahl</span>
+              <span className="text-primary">5 Varianten zur Auswahl</span>
             </h1>
             <p className="text-lg text-white/70 max-w-2xl mx-auto">
-              Gleiches Assessment, gleiche Auswertung – vier verschiedene Darstellungsformen.
+              Gleiches Assessment, gleiche Auswertung – fünf verschiedene Darstellungsformen.
               Wählen Sie die Variante, die am besten zu Ihrer Zielgruppe passt.
             </p>
           </motion.div>
@@ -91,6 +101,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
+              className={i === variants.length - 1 && variants.length % 2 !== 0 ? 'md:col-span-2 md:max-w-[calc(50%-0.75rem)] md:mx-auto' : ''}
             >
               <Link
                 to={`/${v.id}`}
@@ -153,11 +164,11 @@ export default function Home() {
         <div className="bg-white rounded-2xl border border-gray-200 p-6 md:p-8 text-center">
           <h3 className="text-lg font-bold text-navy mb-2">Alle Varianten enthalten:</h3>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-            <span>✓ 22 Fragen in 3 Blöcken</span>
-            <span>✓ Reifegrad-Auswertung</span>
-            <span>✓ Positionierungsmatrix</span>
-            <span>✓ Lead-Capture</span>
-            <span>✓ Workshop-Reset</span>
+            <span>22 Fragen in 3 Blöcken</span>
+            <span>Reifegrad-Auswertung</span>
+            <span>Positionierungsmatrix</span>
+            <span>Lead-Capture</span>
+            <span>Workshop-Reset</span>
           </div>
         </div>
       </div>

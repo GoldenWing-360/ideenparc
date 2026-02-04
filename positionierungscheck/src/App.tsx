@@ -8,6 +8,7 @@ const CardStepper = lazy(() => import('./components/variant-a/CardStepper'));
 const ScrollJourney = lazy(() => import('./components/variant-b/ScrollJourney'));
 const StepWizard = lazy(() => import('./components/variant-c/StepWizard'));
 const FocusMode = lazy(() => import('./components/variant-d/FocusMode'));
+const CinematicMode = lazy(() => import('./components/variant-e/CinematicMode'));
 
 function Loading() {
   return (
@@ -26,10 +27,11 @@ export default function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/variante-a" element={<CardStepper />} />
-          <Route path="/variante-b" element={<ScrollJourney />} />
-          <Route path="/variante-c" element={<StepWizard />} />
-          <Route path="/variante-d" element={<FocusMode />} />
+          <Route path="/card-stepper" element={<CardStepper />} />
+          <Route path="/scroll" element={<ScrollJourney />} />
+          <Route path="/wizard" element={<StepWizard />} />
+          <Route path="/focus" element={<FocusMode />} />
+          <Route path="/cinematic" element={<CinematicMode />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
         </Routes>
