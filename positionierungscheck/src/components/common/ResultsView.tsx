@@ -2,11 +2,13 @@ import { motion } from 'framer-motion';
 import type { BlockId } from '../../data/questions';
 import type { MaturityLevel, MatrixQuadrant } from '../../data/evaluation';
 import { maturityLevels } from '../../data/evaluation';
+import { getIcon } from '../../data/icons';
 import ProgressRing from './ProgressRing';
 import MatrixGrid from './MatrixGrid';
 import BlockScores from './BlockScores';
 import LeadCapture from './LeadCapture';
 import ConsultationCTA from './ConsultationCTA';
+import { ArrowRight } from 'lucide-react';
 
 interface ResultsViewProps {
   overallScore: number;
@@ -36,8 +38,28 @@ export default function ResultsView({
   matrixQuadrant,
   onReset,
 }: ResultsViewProps) {
+  const MaturityIcon = getIcon(maturityLevel.icon);
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-3xl mx-auto px-4 py-12 space-y-12">
+      {/* Logo */}
+      <motion.div
+        className="flex justify-center"
+        initial="hidden"
+        animate="visible"
+        custom={0}
+        variants={fadeUp}
+      >
+        <img
+          src="/logo.png"
+          alt="ideenparc"
+          className="h-8 object-contain"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
+        />
+      </motion.div>
+
       {/* Header */}
       <motion.div
         className="text-center"
@@ -46,10 +68,10 @@ export default function ResultsView({
         custom={0}
         variants={fadeUp}
       >
-        <h2 className="text-2xl md:text-3xl font-bold text-navy mb-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-navy mb-3">
           Ihr Ergebnis – klar auf den Punkt
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600" style={{ fontSize: '15px', lineHeight: 1.7 }}>
           Auf Basis Ihrer Einschätzungen lässt sich eine erste fundierte Einordnung
           Ihrer aktuellen Marktpositionierung ableiten.
         </p>
@@ -57,57 +79,83 @@ export default function ResultsView({
 
       {/* Reifegrad Card */}
       <motion.div
-        className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8"
+        className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 md:p-10"
         initial="hidden"
         animate="visible"
         custom={1}
         variants={fadeUp}
       >
-        <div className="text-center mb-6">
+        <div className="text-center mb-8">
           <ProgressRing value={overallScore} />
-          <div className="mt-4">
-            <span className="text-3xl mr-2">{maturityLevel.icon}</span>
-            <h3 className="text-xl md:text-2xl font-bold text-navy inline">
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#00ADE00F' }}>
+              <MaturityIcon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold text-navy">
               {maturityLevel.title}
             </h3>
           </div>
-          <p className="text-gray-600 mt-3 text-sm md:text-base leading-relaxed max-w-lg mx-auto">
+          <p className="text-gray-600 mt-4 max-w-lg mx-auto" style={{ fontSize: '15px', lineHeight: 1.7 }}>
             {maturityLevel.text}
           </p>
         </div>
 
         {/* Block Scores */}
-        <div className="mt-6 pt-6 border-t border-gray-100">
-          <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+        <div className="mt-8 pt-8 border-t border-gray-100">
+          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-5">
             Ergebnisse nach Bereich
           </h4>
           <BlockScores scores={blockScores} />
         </div>
 
         {/* Maturity Scale */}
-        <div className="mt-6 pt-6 border-t border-gray-100">
-          <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+        <div className="mt-8 pt-8 border-t border-gray-100">
+          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">
             Reifegrad-Skala
           </h4>
-          <div className="flex gap-1">
-            {maturityLevels.map((level) => {
+          <div className="flex flex-wrap gap-2 justify-center">
+            {maturityLevels.map((level, idx) => {
               const isActive = level.title === maturityLevel.title;
+              const LevelIcon = getIcon(level.icon);
               return (
-                <div
-                  key={level.title}
-                  className={`flex-1 rounded-lg p-2 text-center transition-all ${
-                    isActive
-                      ? 'bg-primary text-white shadow-md scale-105'
-                      : 'bg-gray-100 text-gray-400'
-                  }`}
-                >
-                  <div className="text-lg">{level.icon}</div>
-                  <div className="text-[10px] font-medium leading-tight mt-1 hidden md:block">
-                    {level.title}
+                <div key={level.title} className="flex items-center">
+                  <div
+                    className="flex flex-col items-center text-center transition-all duration-300"
+                    style={{
+                      minWidth: '110px',
+                      padding: '16px 12px',
+                      borderRadius: '12px',
+                      backgroundColor: isActive ? '#00ADE0' : '#F1F5F9',
+                      color: isActive ? '#fff' : '#6B7280',
+                      opacity: isActive ? 1 : 0.6,
+                      transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                    }}
+                  >
+                    <LevelIcon
+                      className="mb-2"
+                      style={{ width: 22, height: 22 }}
+                      strokeWidth={1.5}
+                    />
+                    <div
+                      className="font-semibold leading-tight"
+                      style={{ fontSize: '12px' }}
+                    >
+                      {level.title}
+                    </div>
+                    <div
+                      className="mt-1 tabular-nums"
+                      style={{ fontSize: '10px', opacity: 0.8 }}
+                    >
+                      {level.min}–{level.max}%
+                    </div>
                   </div>
-                  <div className="text-[10px] mt-0.5">
-                    {level.min}–{level.max}%
-                  </div>
+                  {idx < maturityLevels.length - 1 && (
+                    <ArrowRight
+                      className="mx-1 shrink-0 hidden md:block"
+                      style={{ width: 14, height: 14, color: '#D1D5DB' }}
+                      strokeWidth={2}
+                    />
+                  )}
                 </div>
               );
             })}
@@ -117,13 +165,13 @@ export default function ResultsView({
 
       {/* Matrix Card */}
       <motion.div
-        className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8"
+        className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 md:p-10"
         initial="hidden"
         animate="visible"
         custom={2}
         variants={fadeUp}
       >
-        <h3 className="text-lg md:text-xl font-bold text-navy mb-4 text-center">
+        <h3 className="text-lg md:text-xl font-bold text-navy mb-6 text-center">
           Ihre Position in der Positionierungsmatrix
         </h3>
         <MatrixGrid
@@ -131,15 +179,6 @@ export default function ResultsView({
           clarityScore={clarityScore}
           executionScore={executionScore}
         />
-        <div className="mt-6 bg-gray-50 rounded-xl p-4">
-          <div className="flex items-start gap-3">
-            <span className="text-2xl">{matrixQuadrant.icon}</span>
-            <div>
-              <h4 className="font-semibold text-navy">{matrixQuadrant.title}</h4>
-              <p className="text-gray-600 text-sm mt-1">{matrixQuadrant.text}</p>
-            </div>
-          </div>
-        </div>
       </motion.div>
 
       {/* Lead Capture */}
@@ -158,16 +197,26 @@ export default function ResultsView({
 
       {/* Footer */}
       <motion.div
-        className="text-center text-xs text-gray-400 pt-4"
+        className="text-center text-xs text-gray-400 pt-6 space-y-2"
         initial="hidden"
         animate="visible"
         custom={5}
         variants={fadeUp}
       >
-        <p>© ideenparc GmbH · Mandlstraße 26 · 80802 München</p>
+        <img
+          src="/logo.png"
+          alt="ideenparc"
+          className="h-7 mx-auto opacity-60"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = 'none';
+          }}
+        />
+        <p>ideenparc GmbH · Mandlstraße 26 · 80802 München</p>
+        <p className="text-gray-400">Ein Projekt von GoldenWing Digital</p>
         <div className="mt-1 space-x-3">
           <a href="/impressum" className="hover:text-gray-600 transition-colors">Impressum</a>
           <a href="/datenschutz" className="hover:text-gray-600 transition-colors">Datenschutz</a>
+          <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">ideenparc.net</a>
         </div>
       </motion.div>
     </div>

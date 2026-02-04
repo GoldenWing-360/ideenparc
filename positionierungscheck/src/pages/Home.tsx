@@ -1,14 +1,26 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Smartphone, ScrollText, ClipboardList, Target, Clapperboard } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
-const variants = [
+interface VariantInfo {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  Icon: LucideIcon;
+  color: string;
+  features: string[];
+}
+
+const variants: VariantInfo[] = [
   {
     id: 'card-stepper',
     title: 'Card Stepper',
     subtitle: 'App-Feeling',
     description:
       'Eine Frage pro Bildschirm mit Slide-Animationen. Wie eine moderne App – fokussiert und intuitiv.',
-    icon: '📱',
+    Icon: Smartphone,
     color: '#00ADE0',
     features: ['Eine Frage pro Screen', 'Slide-Animationen', 'Dot-Navigation', 'Tastatur-Support'],
   },
@@ -18,7 +30,7 @@ const variants = [
     subtitle: 'Long-Page',
     description:
       'Klassische Scroll-Seite mit Accordion-Sektionen. Alle Blöcke auf einen Blick – übersichtlich und strukturiert.',
-    icon: '📜',
+    Icon: ScrollText,
     color: '#006BB6',
     features: ['Alle Blöcke sichtbar', 'Accordion-Sektionen', 'Sticky Fortschritt', 'Smooth Scroll'],
   },
@@ -28,7 +40,7 @@ const variants = [
     subtitle: 'Formular-Stil',
     description:
       'Schrittweiser Durchlauf mit übersichtlichem Step-Indikator. Alle Fragen eines Blocks auf einer Seite.',
-    icon: '📋',
+    Icon: ClipboardList,
     color: '#F39401',
     features: ['5-Schritte-Anzeige', 'Block-weise Bearbeitung', 'Übersichtlich', 'Fade-Animationen'],
   },
@@ -38,7 +50,7 @@ const variants = [
     subtitle: 'Typeform-Stil',
     description:
       'Minimalistisch und immersiv. Eine Frage im Fullscreen – maximaler Fokus, dramatische Übergänge.',
-    icon: '🎯',
+    Icon: Target,
     color: '#39A958',
     features: ['Fullscreen-Layout', 'Farbwechsel', 'Cinematic Reveal', 'Keyboard-First'],
   },
@@ -48,7 +60,7 @@ const variants = [
     subtitle: 'Apple × Netflix',
     description:
       'Ultra-clean, dunkel, cinematisch. Viel Luft, große Typografie, dramatische Reveals. Premium-Feeling das Vertrauen schafft.',
-    icon: '🎬',
+    Icon: Clapperboard,
     color: '#0A2540',
     features: ['Dark Mode', 'Titillium Web', 'Cinematic Reveal', 'Premium-Design'],
   },
@@ -74,9 +86,16 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-6"
           >
-            <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm mb-6">
-              <span className="w-2 h-2 bg-primary rounded-full" />
-              ideenparc GmbH
+            <div className="flex justify-center mb-6">
+              <img
+                src="/logo.png"
+                alt="ideenparc"
+                className="h-10 object-contain"
+                onError={(e) => {
+                  const el = e.target as HTMLImageElement;
+                  el.style.display = 'none';
+                }}
+              />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight">
               Positionierungscheck
@@ -112,7 +131,12 @@ export default function Home() {
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <span className="text-3xl">{v.icon}</span>
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center mb-2"
+                        style={{ backgroundColor: `${v.color}15` }}
+                      >
+                        <v.Icon className="w-5 h-5" style={{ color: v.color }} strokeWidth={1.5} />
+                      </div>
                       <h2 className="text-xl font-bold text-navy mt-2">{v.title}</h2>
                       <span
                         className="text-xs font-medium px-2 py-0.5 rounded-full text-white"
@@ -175,15 +199,29 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 py-6">
-        <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <span>© ideenparc GmbH · Mandlstraße 26 · 80802 München</span>
-          <div className="flex gap-4">
+        <div className="max-w-5xl mx-auto px-4 text-center space-y-2">
+          <img
+            src="/logo.png"
+            alt="ideenparc"
+            className="h-7 mx-auto opacity-60"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }}
+          />
+          <p className="text-sm text-gray-500">
+            ideenparc GmbH · Mandlstraße 26 · 80802 München
+          </p>
+          <p className="text-xs text-gray-400">Ein Projekt von GoldenWing Digital</p>
+          <div className="flex justify-center gap-4 text-sm text-gray-500">
             <Link to="/impressum" className="hover:text-gray-700 transition-colors">
               Impressum
             </Link>
             <Link to="/datenschutz" className="hover:text-gray-700 transition-colors">
               Datenschutz
             </Link>
+            <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-gray-700 transition-colors">
+              ideenparc.net
+            </a>
           </div>
         </div>
       </footer>

@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAssessment } from '../../hooks/useAssessment';
 import { useEvaluation } from '../../hooks/useEvaluation';
-import Slider from '../common/Slider';
+import ThreeBoxInput from '../common/ThreeBoxInput';
 import ResultsView from '../common/ResultsView';
 import { blocks } from '../../data/questions';
 
@@ -193,10 +193,10 @@ export default function StepWizard() {
                             <p className="text-gray-800 leading-relaxed">{q.text}</p>
                           </div>
                           <div className="ml-0 md:ml-11">
-                            <Slider
+                            <ThreeBoxInput
                               value={assessment.answers[q.id] ?? 0}
                               onChange={(val) => assessment.setAnswer(q.id, val)}
-                              color={block.color}
+                              accent={block.color}
                             />
                           </div>
                         </div>

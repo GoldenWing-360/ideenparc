@@ -2,7 +2,8 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useAssessment } from '../../hooks/useAssessment';
 import { useEvaluation } from '../../hooks/useEvaluation';
-import Slider from '../common/Slider';
+import ThreeBoxInput from '../common/ThreeBoxInput';
+import { Check } from 'lucide-react';
 import ResultsView from '../common/ResultsView';
 import { blocks } from '../../data/questions';
 
@@ -159,7 +160,7 @@ export default function ScrollJourney() {
                 </div>
                 <div className="flex items-center gap-3 ml-4 shrink-0">
                   <span className="text-sm font-medium bg-white/20 px-3 py-1 rounded-full">
-                    {answeredInBlock}/{totalInBlock} {blockComplete ? '✓' : ''}
+                    {answeredInBlock}/{totalInBlock} {blockComplete && <Check className="inline w-3.5 h-3.5 ml-0.5" strokeWidth={2.5} />}
                   </span>
                   <svg
                     className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -195,10 +196,10 @@ export default function ScrollJourney() {
                           </p>
                         </div>
                         <div className="ml-0 md:ml-9">
-                          <Slider
+                          <ThreeBoxInput
                             value={assessment.answers[q.id] ?? 0}
                             onChange={(val) => assessment.setAnswer(q.id, val)}
-                            color={block.color}
+                            accent={block.color}
                           />
                         </div>
                       </div>
