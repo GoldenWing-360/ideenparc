@@ -67,7 +67,7 @@ export const matrixQuadrants: MatrixQuadrant[] = [
   {
     clarityHigh: true,
     executionHigh: false,
-    title: 'Strategie vor Umsetzung',
+    title: 'Zielgerichtet, aber langsam',
     icon: 'lightbulb',
     color: '#F39401',
     text: 'Die Richtung stimmt, aber sie kommt noch nicht verlässlich in die Umsetzung. Die Priorität sollte in der Aktivierung der Positionierung liegen. Übersetzen Sie die Kernthemen in wiederholbare Routinen, Botschaften und Assets, um Mitarbeitern und Kunden an allen Touchpoints ein klares Bild zu geben.',
@@ -75,7 +75,7 @@ export const matrixQuadrants: MatrixQuadrant[] = [
   {
     clarityHigh: false,
     executionHigh: true,
-    title: 'Aktiv ohne Leitplanken',
+    title: 'Aktiv, aber beliebig',
     icon: 'zap',
     color: '#00ADE0',
     text: 'Sie setzen viel um und sind sichtbar, doch ohne klare Leitplanken entsteht Streuverlust. Der Hebel liegt in einer klaren Fokussierung: Ziel definieren, Abgrenzung schärfen, Kernbotschaften festlegen. Dann wird aus Aktivität echte Wirkung.',
@@ -83,7 +83,7 @@ export const matrixQuadrants: MatrixQuadrant[] = [
   {
     clarityHigh: false,
     executionHigh: false,
-    title: 'Neustart mit Potenzial',
+    title: 'Unentschlossen & passiv',
     icon: 'helpCircle',
     color: '#006BB6',
     text: 'Es fehlt aktuell an Orientierung und an konsequenter Umsetzung. Das ist kein Nachteil, sondern ein guter Ausgangspunkt für einen sauberen Aufbau. Starten Sie mit einem klaren Kernprofil und leiten Sie daraus einfache, konsistente Basics ab.',

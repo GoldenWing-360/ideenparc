@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+const FinalCheck = lazy(() => import('./components/final/FinalCheck'));
 const Home = lazy(() => import('./pages/Home'));
 const Impressum = lazy(() => import('./pages/Impressum'));
 const Datenschutz = lazy(() => import('./pages/Datenschutz'));
@@ -12,10 +13,10 @@ const CinematicMode = lazy(() => import('./components/variant-e/CinematicMode'))
 
 function Loading() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0A0F1A' }}>
       <div className="text-center">
-        <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-gray-500 text-sm">Lädt...</p>
+        <div className="w-8 h-8 border-3 border-[#00ADE0] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <p style={{ color: '#475569', fontSize: '0.85rem' }}>Lädt...</p>
       </div>
     </div>
   );
@@ -26,7 +27,8 @@ export default function App() {
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<FinalCheck />} />
+          <Route path="/varianten" element={<Home />} />
           <Route path="/card-stepper" element={<CardStepper />} />
           <Route path="/scroll" element={<ScrollJourney />} />
           <Route path="/wizard" element={<StepWizard />} />
