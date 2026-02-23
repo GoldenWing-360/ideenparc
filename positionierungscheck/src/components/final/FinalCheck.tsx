@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAssessment } from '../../hooks/useAssessment';
 import { useEvaluation } from '../../hooks/useEvaluation';
-import CinematicSlider from '../variant-e/CinematicSlider';
+import FinalSlider from './FinalSlider';
 import FinalResults from './FinalResults';
 import { blocks, allQuestions } from '../../data/questions';
 
@@ -103,6 +103,7 @@ export default function FinalCheck() {
     if (phase !== 'reveal') return;
     const target = evaluation.overallScore;
     let frame: number;
+    let timeout: ReturnType<typeof setTimeout>;
     const duration = 2000;
     const start = performance.now();
     const tick = (now: number) => {
@@ -113,12 +114,16 @@ export default function FinalCheck() {
       if (progress < 1) {
         frame = requestAnimationFrame(tick);
       } else {
-        setTimeout(() => setPhase('results'), 3000);
+        timeout = setTimeout(() => setPhase('results'), 3000);
       }
     };
     frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [phase, evaluation.overallScore]);
+    return () => {
+      cancelAnimationFrame(frame);
+      clearTimeout(timeout);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
 
   const handleReset = () => {
     assessment.reset();
@@ -421,11 +426,10 @@ export default function FinalCheck() {
 
               {/* Slider */}
               <div className="px-4">
-                <CinematicSlider
+                <FinalSlider
                   value={assessment.answers[currentQ.id] ?? 0}
                   onChange={(val) => assessment.setAnswer(currentQ.id, val)}
                   color={currentBlock?.color || '#00ADE0'}
-                  touched={hasAnswered}
                 />
               </div>
 
