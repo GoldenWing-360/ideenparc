@@ -22,8 +22,13 @@
   html {
     scroll-behavior: smooth;
   }
+  html, body {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
   body {
-    @apply antialiased text-gray-800 bg-white;
+    @apply antialiased text-gray-800;
+    background-color: #0A0F1A;
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 }

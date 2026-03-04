@@ -163,7 +163,7 @@ export default function FinalCheck() {
 
   return (
     <div
-      className="min-h-screen flex flex-col"
+      className="h-screen flex flex-col overflow-hidden"
       style={{ backgroundColor: '#0A0F1A', fontFamily: font }}
     >
       {/* Progress indicator — wizard circles */}

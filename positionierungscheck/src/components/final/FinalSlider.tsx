@@ -100,7 +100,7 @@ export default function FinalSlider({
   return (
     <div className="w-full select-none">
       {/* Value display */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-8">
         <span
           className="font-bold tabular-nums"
           style={{
@@ -115,7 +115,24 @@ export default function FinalSlider({
         </span>
       </div>
 
-      {/* Track */}
+      {/* Tick marks above track */}
+      <div className="relative w-full mb-1" style={{ height: '16px' }}>
+        {TICKS.map((tick) => (
+          <div
+            key={tick}
+            className="absolute bottom-0 rounded-full"
+            style={{
+              left: `${tick}%`,
+              transform: 'translateX(-50%)',
+              width: '1.5px',
+              height: tick % 50 === 0 ? '14px' : '8px',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Track + Thumb area */}
       <div
         ref={trackRef}
         className="relative h-3 rounded-full cursor-pointer"
@@ -130,20 +147,6 @@ export default function FinalSlider({
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
-        {/* Tick marks at every 10% */}
-        {TICKS.map((tick) => (
-          <div
-            key={tick}
-            className="absolute top-1/2 -translate-y-1/2 w-0.5 rounded-full"
-            style={{
-              left: `${tick}%`,
-              height: tick % 50 === 0 ? '20px' : '14px',
-              transform: 'translateX(-50%) translateY(-50%)',
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
-            }}
-          />
-        ))}
-
         {/* Filled track */}
         <div
           className="absolute top-0 left-0 h-3 rounded-full transition-all duration-75"
