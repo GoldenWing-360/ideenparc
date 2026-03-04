@@ -235,7 +235,7 @@ export default function FinalResults({
             >
               Reifegrad-Skala
             </p>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
               {maturityLevels.map((level) => {
                 const isActive = level.title === maturityLevel.title;
                 const LevelIcon = getIcon(level.icon);
@@ -284,7 +284,7 @@ export default function FinalResults({
           >
             Ihre Position
           </h3>
-          <div className="flex justify-center gap-6 mb-6" style={{ fontSize: '0.85rem' }}>
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 mb-6" style={{ fontSize: '0.85rem' }}>
             <span style={{ color: '#94A3B8' }}>
               Strategische Klarheit: <strong className="tabular-nums" style={{ color: '#00ADE0' }}>{clarityScore}%</strong>
             </span>
@@ -309,7 +309,7 @@ export default function FinalResults({
             </div>
             <div
               className="grid grid-cols-2 overflow-hidden rounded-xl"
-              style={{ border: '1px solid rgba(255,255,255,0.06)', minHeight: '280px' }}
+              style={{ border: '1px solid rgba(255,255,255,0.06)', minHeight: '240px' }}
             >
               {quadrantLayout.map((layout) => {
                 const quadrant = matrixQuadrants.find(
@@ -454,7 +454,7 @@ export default function FinalResults({
                     <input id="fin-c-email" type="email" value={consultEmail} onChange={(e) => setConsultEmail(e.target.value)}
                       placeholder="ihre@email.de" required className={inputClass} style={inputStyle} />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label htmlFor="fin-c-phone" className="block mb-1" style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Telefon</label>
                       <input id="fin-c-phone" type="tel" value={consultPhone} onChange={(e) => setConsultPhone(e.target.value)}
