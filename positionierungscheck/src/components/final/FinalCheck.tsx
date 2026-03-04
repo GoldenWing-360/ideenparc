@@ -88,15 +88,27 @@ export default function FinalCheck() {
     goToQuestion(assessment.currentIndex - 1);
   }, [assessment.currentIndex, goToQuestion]);
 
-  // Keyboard
+  // Keyboard — Enter to proceed, Arrow keys to move slider
   useEffect(() => {
     if (phase !== 'question') return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') handleNext();
+      if (e.key === 'Enter') {
+        handleNext();
+        return;
+      }
+      if (!currentQ) return;
+      const current = assessment.answers[currentQ.id] ?? 0;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        assessment.setAnswer(currentQ.id, Math.min(100, current + 10));
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        assessment.setAnswer(currentQ.id, Math.max(0, current - 10));
+      }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, [phase, handleNext]);
+  }, [phase, handleNext, currentQ, assessment]);
 
   // Reveal animation — 3s hold before results
   useEffect(() => {

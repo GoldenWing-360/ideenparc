@@ -235,33 +235,65 @@ export default function FinalResults({
             >
               Reifegrad-Skala
             </p>
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
-              {maturityLevels.map((level) => {
-                const isActive = level.title === maturityLevel.title;
-                const LevelIcon = getIcon(level.icon);
-                return (
-                  <div
-                    key={level.title}
-                    className="flex flex-col items-center text-center transition-all duration-300"
-                    style={{
-                      padding: '16px 8px',
-                      borderRadius: '12px',
-                      backgroundColor: isActive ? '#00ADE0' : 'rgba(255,255,255,0.06)',
-                      border: isActive ? '1px solid #00ADE0' : '1px solid rgba(255,255,255,0.08)',
-                      color: isActive ? '#fff' : '#8B9AB5',
-                      transform: isActive ? 'scale(1.04)' : 'scale(1)',
-                    }}
-                  >
-                    <LevelIcon className="mb-2" style={{ width: 22, height: 22 }} strokeWidth={1.5} />
-                    <div style={{ fontSize: '11px', fontWeight: 600, lineHeight: 1.3 }}>
-                      {level.title}
+            <div className="flex flex-col items-center gap-2">
+              {/* Row 1: first 3 */}
+              <div className="grid grid-cols-3 gap-2 w-full">
+                {maturityLevels.slice(0, 3).map((level) => {
+                  const isActive = level.title === maturityLevel.title;
+                  const LevelIcon = getIcon(level.icon);
+                  return (
+                    <div
+                      key={level.title}
+                      className="flex flex-col items-center text-center transition-all duration-300"
+                      style={{
+                        padding: '18px 10px',
+                        borderRadius: '12px',
+                        backgroundColor: isActive ? '#00ADE0' : 'rgba(255,255,255,0.06)',
+                        border: isActive ? '1px solid #00ADE0' : '1px solid rgba(255,255,255,0.08)',
+                        color: isActive ? '#fff' : '#8B9AB5',
+                        transform: isActive ? 'scale(1.03)' : 'scale(1)',
+                      }}
+                    >
+                      <LevelIcon className="mb-2" style={{ width: 24, height: 24 }} strokeWidth={1.5} />
+                      <div style={{ fontSize: '12px', fontWeight: 600, lineHeight: 1.3 }}>
+                        {level.title}
+                      </div>
+                      <div className="tabular-nums mt-1" style={{ fontSize: '11px', opacity: isActive ? 0.85 : 0.6 }}>
+                        {level.min}–{level.max}%
+                      </div>
                     </div>
-                    <div className="tabular-nums mt-1" style={{ fontSize: '10px', opacity: isActive ? 0.85 : 0.6 }}>
-                      {level.min}–{level.max}%
+                  );
+                })}
+              </div>
+              {/* Row 2: last 2, centered */}
+              <div className="grid grid-cols-2 gap-2" style={{ width: '66%' }}>
+                {maturityLevels.slice(3).map((level) => {
+                  const isActive = level.title === maturityLevel.title;
+                  const LevelIcon = getIcon(level.icon);
+                  return (
+                    <div
+                      key={level.title}
+                      className="flex flex-col items-center text-center transition-all duration-300"
+                      style={{
+                        padding: '18px 10px',
+                        borderRadius: '12px',
+                        backgroundColor: isActive ? '#00ADE0' : 'rgba(255,255,255,0.06)',
+                        border: isActive ? '1px solid #00ADE0' : '1px solid rgba(255,255,255,0.08)',
+                        color: isActive ? '#fff' : '#8B9AB5',
+                        transform: isActive ? 'scale(1.03)' : 'scale(1)',
+                      }}
+                    >
+                      <LevelIcon className="mb-2" style={{ width: 24, height: 24 }} strokeWidth={1.5} />
+                      <div style={{ fontSize: '12px', fontWeight: 600, lineHeight: 1.3 }}>
+                        {level.title}
+                      </div>
+                      <div className="tabular-nums mt-1" style={{ fontSize: '11px', opacity: isActive ? 0.85 : 0.6 }}>
+                        {level.min}–{level.max}%
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </motion.div>
