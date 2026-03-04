@@ -5,7 +5,7 @@ import { blocks } from '../../data/questions';
 import type { MaturityLevel, MatrixQuadrant } from '../../data/evaluation';
 import { maturityLevels, matrixQuadrants } from '../../data/evaluation';
 import { getIcon } from '../../data/icons';
-import { CheckCircle2, Calendar, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Calendar } from 'lucide-react';
 import { submitConsultation } from '../../services/leadService';
 
 interface FinalResultsProps {
@@ -148,7 +148,7 @@ export default function FinalResults({
         <motion.div className="text-center" initial="hidden" animate="visible" custom={0} variants={stagger}>
           <p
             className="uppercase tracking-[3px] mb-4"
-            style={{ color: '#475569', fontSize: '11px', fontWeight: 600 }}
+            style={{ color: '#64748B', fontSize: '11px', fontWeight: 600 }}
           >
             Ihr Ergebnis
           </p>
@@ -195,7 +195,7 @@ export default function FinalResults({
           >
             <p
               className="uppercase tracking-[3px] mb-4"
-              style={{ color: '#475569', fontSize: '10px', fontWeight: 600 }}
+              style={{ color: '#64748B', fontSize: '10px', fontWeight: 600 }}
             >
               Ergebnisse nach Bereich
             </p>
@@ -231,42 +231,34 @@ export default function FinalResults({
           <div className="pt-8 mt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
             <p
               className="uppercase tracking-[3px] mb-4"
-              style={{ color: '#475569', fontSize: '10px', fontWeight: 600 }}
+              style={{ color: '#64748B', fontSize: '10px', fontWeight: 600 }}
             >
               Reifegrad-Skala
             </p>
-            <div className="flex flex-wrap gap-1.5 justify-center">
-              {maturityLevels.map((level, idx) => {
+            <div className="grid grid-cols-5 gap-2">
+              {maturityLevels.map((level) => {
                 const isActive = level.title === maturityLevel.title;
                 const LevelIcon = getIcon(level.icon);
                 return (
-                  <div key={level.title} className="flex items-center">
-                    <div
-                      className="flex flex-col items-center text-center transition-all duration-300"
-                      style={{
-                        minWidth: '100px',
-                        padding: '14px 10px',
-                        borderRadius: '10px',
-                        backgroundColor: isActive ? '#00ADE0' : 'rgba(255,255,255,0.08)',
-                        color: isActive ? '#fff' : '#94A3B8',
-                        transform: isActive ? 'scale(1.05)' : 'scale(1)',
-                      }}
-                    >
-                      <LevelIcon className="mb-1.5" style={{ width: 18, height: 18 }} strokeWidth={1.5} />
-                      <div style={{ fontSize: '10px', fontWeight: 600, lineHeight: 1.3 }}>
-                        {level.title}
-                      </div>
-                      <div className="tabular-nums mt-0.5" style={{ fontSize: '9px', opacity: 0.7 }}>
-                        {level.min}–{level.max}%
-                      </div>
+                  <div
+                    key={level.title}
+                    className="flex flex-col items-center text-center transition-all duration-300"
+                    style={{
+                      padding: '16px 8px',
+                      borderRadius: '12px',
+                      backgroundColor: isActive ? '#00ADE0' : 'rgba(255,255,255,0.06)',
+                      border: isActive ? '1px solid #00ADE0' : '1px solid rgba(255,255,255,0.08)',
+                      color: isActive ? '#fff' : '#8B9AB5',
+                      transform: isActive ? 'scale(1.04)' : 'scale(1)',
+                    }}
+                  >
+                    <LevelIcon className="mb-2" style={{ width: 22, height: 22 }} strokeWidth={1.5} />
+                    <div style={{ fontSize: '11px', fontWeight: 600, lineHeight: 1.3 }}>
+                      {level.title}
                     </div>
-                    {idx < maturityLevels.length - 1 && (
-                      <ArrowRight
-                        className="mx-0.5 shrink-0 hidden md:block"
-                        style={{ width: 12, height: 12, color: 'rgba(255,255,255,0.15)' }}
-                        strokeWidth={2}
-                      />
-                    )}
+                    <div className="tabular-nums mt-1" style={{ fontSize: '10px', opacity: isActive ? 0.85 : 0.6 }}>
+                      {level.min}–{level.max}%
+                    </div>
                   </div>
                 );
               })}
@@ -282,7 +274,7 @@ export default function FinalResults({
         >
           <p
             className="uppercase tracking-[3px] mb-2 text-center"
-            style={{ color: '#475569', fontSize: '10px', fontWeight: 600 }}
+            style={{ color: '#64748B', fontSize: '10px', fontWeight: 600 }}
           >
             Positionierungsmatrix
           </p>
@@ -305,14 +297,14 @@ export default function FinalResults({
             {/* Y-axis label */}
             <div className="absolute left-0 top-0 bottom-8 flex items-center">
               <div className="flex flex-col items-center justify-between h-full py-1">
-                <span style={{ color: '#475569', fontSize: '8px' }}>Hoch</span>
+                <span style={{ color: '#64748B', fontSize: '8px' }}>Hoch</span>
                 <span
                   className="-rotate-90 whitespace-nowrap"
-                  style={{ color: '#475569', fontSize: '9px', fontWeight: 600, letterSpacing: '2px' }}
+                  style={{ color: '#64748B', fontSize: '9px', fontWeight: 600, letterSpacing: '2px' }}
                 >
                   KLARHEIT
                 </span>
-                <span style={{ color: '#475569', fontSize: '8px' }}>Niedrig</span>
+                <span style={{ color: '#64748B', fontSize: '8px' }}>Niedrig</span>
               </div>
             </div>
             <div
@@ -343,7 +335,7 @@ export default function FinalResults({
                       style={{
                         width: isActive ? 28 : 18,
                         height: isActive ? 28 : 18,
-                        color: isActive ? quadrant.color : '#475569',
+                        color: isActive ? quadrant.color : '#64748B',
                       }}
                       strokeWidth={1.5}
                     />
@@ -351,7 +343,7 @@ export default function FinalResults({
                       className="text-center font-semibold"
                       style={{
                         fontSize: isActive ? '0.85rem' : '0.75rem',
-                        color: isActive ? '#F1F5F9' : '#475569',
+                        color: isActive ? '#F1F5F9' : '#64748B',
                       }}
                     >
                       {quadrant.title}
@@ -367,11 +359,11 @@ export default function FinalResults({
             </div>
             {/* X-axis label */}
             <div className="flex items-center justify-between mt-2 px-1">
-              <span style={{ color: '#475569', fontSize: '8px' }}>Niedrig</span>
-              <span style={{ color: '#475569', fontSize: '9px', fontWeight: 600, letterSpacing: '2px' }}>
+              <span style={{ color: '#64748B', fontSize: '8px' }}>Niedrig</span>
+              <span style={{ color: '#64748B', fontSize: '9px', fontWeight: 600, letterSpacing: '2px' }}>
                 UMSETZUNG
               </span>
-              <span style={{ color: '#475569', fontSize: '8px' }}>Hoch</span>
+              <span style={{ color: '#64748B', fontSize: '8px' }}>Hoch</span>
             </div>
           </div>
 
@@ -446,7 +438,7 @@ export default function FinalResults({
                   >
                     Gespräch vereinbaren
                   </button>
-                  <p className="mt-4" style={{ color: '#475569', fontSize: '0.8rem' }}>
+                  <p className="mt-4" style={{ color: '#94A3B8', fontSize: '0.85rem' }}>
                     Kostenfrei · Unverbindlich · Persönlich
                   </p>
                 </div>
@@ -484,9 +476,9 @@ export default function FinalResults({
                   <label className="flex items-start gap-2 cursor-pointer">
                     <input type="checkbox" checked={consultDsgvo} onChange={(e) => setConsultDsgvo(e.target.checked)}
                       className="mt-1 w-4 h-4 rounded accent-[#00ADE0]" required />
-                    <span style={{ color: '#475569', fontSize: '0.75rem', lineHeight: 1.5 }}>
+                    <span style={{ color: '#64748B', fontSize: '0.75rem', lineHeight: 1.5 }}>
                       Ich stimme der Verarbeitung meiner Daten gemäß der{' '}
-                      <a href="/datenschutz" className="underline hover:text-[#94A3B8]" style={{ color: '#475569' }}>Datenschutzerklärung</a>{' '}
+                      <a href="/datenschutz" className="underline hover:text-[#94A3B8]" style={{ color: '#64748B' }}>Datenschutzerklärung</a>{' '}
                       zu. *
                     </span>
                   </label>
@@ -511,23 +503,23 @@ export default function FinalResults({
           <button
             onClick={onReset}
             className="transition-colors"
-            style={{ color: '#475569', fontSize: '0.85rem' }}
+            style={{ color: '#64748B', fontSize: '0.85rem' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#94A3B8')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#475569')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#64748B')}
           >
             Check wiederholen
           </button>
           <div className="space-y-2">
-            <p style={{ color: '#475569', fontSize: '0.75rem' }}>
+            <p style={{ color: '#64748B', fontSize: '0.75rem' }}>
               ideenparc GmbH · Mandlstraße 26 · 80802 München
             </p>
-            <p style={{ color: '#475569', fontSize: '0.7rem' }}>
+            <p style={{ color: '#64748B', fontSize: '0.7rem' }}>
               Ein Projekt von GoldenWing Digital
             </p>
             <div className="mt-1 space-x-3">
-              <a href="/impressum" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#475569', fontSize: '0.75rem' }}>Impressum</a>
-              <a href="/datenschutz" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#475569', fontSize: '0.75rem' }}>Datenschutz</a>
-              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#475569', fontSize: '0.75rem' }}>ideenparc.net</a>
+              <a href="/impressum" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Impressum</a>
+              <a href="/datenschutz" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Datenschutz</a>
+              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>ideenparc.net</a>
             </div>
           </div>
         </motion.div>
