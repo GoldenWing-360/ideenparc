@@ -6,6 +6,13 @@ interface FinalSliderProps {
   color?: string;
 }
 
+const STEP = 10;
+const TICKS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+function snapToStep(val: number): number {
+  return Math.round(val / STEP) * STEP;
+}
+
 export default function FinalSlider({
   value,
   onChange,
@@ -19,7 +26,7 @@ export default function FinalSlider({
       if (!trackRef.current) return;
       const rect = trackRef.current.getBoundingClientRect();
       const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
-      onChange(Math.round(pct));
+      onChange(snapToStep(pct));
     },
     [onChange]
   );
@@ -69,11 +76,11 @@ export default function FinalSlider({
       switch (e.key) {
         case 'ArrowRight':
         case 'ArrowUp':
-          newValue = Math.min(100, value + 5);
+          newValue = Math.min(100, value + STEP);
           break;
         case 'ArrowLeft':
         case 'ArrowDown':
-          newValue = Math.max(0, value - 5);
+          newValue = Math.max(0, value - STEP);
           break;
         case 'Home':
           newValue = 0;
@@ -108,7 +115,7 @@ export default function FinalSlider({
         </span>
       </div>
 
-      {/* Track — thick like Focus, dark-mode colors */}
+      {/* Track */}
       <div
         ref={trackRef}
         className="relative h-3 rounded-full cursor-pointer"
@@ -123,13 +130,14 @@ export default function FinalSlider({
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
-        {/* Tick marks */}
-        {[0, 25, 50, 75, 100].map((tick) => (
+        {/* Tick marks at every 10% */}
+        {TICKS.map((tick) => (
           <div
             key={tick}
-            className="absolute top-1/2 -translate-y-1/2 w-0.5 h-5 rounded-full"
+            className="absolute top-1/2 -translate-y-1/2 w-0.5 rounded-full"
             style={{
               left: `${tick}%`,
+              height: tick % 50 === 0 ? '20px' : '14px',
               transform: 'translateX(-50%) translateY(-50%)',
               backgroundColor: 'rgba(255, 255, 255, 0.2)',
             }}
@@ -162,26 +170,27 @@ export default function FinalSlider({
         />
       </div>
 
-      {/* Labels — readable on dark bg */}
+      {/* Labels */}
       <div className="flex justify-between mt-3">
-        <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '13px', fontFamily: "'Titillium Web', sans-serif" }}>
           trifft gar nicht zu
         </span>
-        <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '12px', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '13px', fontFamily: "'Titillium Web', sans-serif" }}>
           trifft voll und ganz zu
         </span>
       </div>
 
-      {/* Tick labels */}
+      {/* Tick labels — show 0, 50, 100 */}
       <div className="flex justify-between mt-1">
-        {[0, 25, 50, 75, 100].map((tick) => (
-          <span
-            key={tick}
-            style={{ color: 'rgba(255, 255, 255, 0.35)', fontSize: '11px', fontFamily: "'Titillium Web', sans-serif" }}
-          >
-            {tick}%
-          </span>
-        ))}
+        <span style={{ color: 'rgba(255, 255, 255, 0.35)', fontSize: '11px', fontFamily: "'Titillium Web', sans-serif" }}>
+          0%
+        </span>
+        <span style={{ color: 'rgba(255, 255, 255, 0.35)', fontSize: '11px', fontFamily: "'Titillium Web', sans-serif" }}>
+          50%
+        </span>
+        <span style={{ color: 'rgba(255, 255, 255, 0.35)', fontSize: '11px', fontFamily: "'Titillium Web', sans-serif" }}>
+          100%
+        </span>
       </div>
     </div>
   );

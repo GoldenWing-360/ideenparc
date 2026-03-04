@@ -132,20 +132,6 @@ export default function FinalCheck() {
     setLastBlockId(null);
   };
 
-  if (phase === 'results') {
-    return (
-      <FinalResults
-        overallScore={evaluation.overallScore}
-        maturityLevel={evaluation.maturityLevel}
-        blockScores={evaluation.blockScores}
-        clarityScore={evaluation.clarityScore}
-        executionScore={evaluation.executionScore}
-        matrixQuadrant={evaluation.matrixQuadrant}
-        onReset={handleReset}
-      />
-    );
-  }
-
   const progress = (assessment.answeredCount / assessment.totalQuestions) * 100;
 
   // Dot navigation data — which questions belong to which block, colored
@@ -160,6 +146,20 @@ export default function FinalCheck() {
       };
     });
   }, [assessment.answers, assessment.currentIndex]);
+
+  if (phase === 'results') {
+    return (
+      <FinalResults
+        overallScore={evaluation.overallScore}
+        maturityLevel={evaluation.maturityLevel}
+        blockScores={evaluation.blockScores}
+        clarityScore={evaluation.clarityScore}
+        executionScore={evaluation.executionScore}
+        matrixQuadrant={evaluation.matrixQuadrant}
+        onReset={handleReset}
+      />
+    );
+  }
 
   return (
     <div
@@ -443,7 +443,7 @@ export default function FinalCheck() {
                     onMouseEnter={(e) => (e.currentTarget.style.color = '#94A3B8')}
                     onMouseLeave={(e) => (e.currentTarget.style.color = '#475569')}
                   >
-                    \u2190 Zur\u00fcck
+                    ← Zurück
                   </button>
                 ) : (
                   <div />
@@ -451,13 +451,11 @@ export default function FinalCheck() {
                 <button
                   onClick={handleNext}
                   disabled={!hasAnswered}
-                  className="px-6 py-3 rounded-xl font-semibold transition-all hover:scale-[1.02]"
+                  className="px-6 py-3 rounded-xl font-semibold transition-all hover:scale-[1.02] disabled:opacity-60"
                   style={{
-                    backgroundColor: hasAnswered ? (currentBlock?.color || '#00ADE0') : 'transparent',
-                    color: hasAnswered ? '#fff' : '#475569',
-                    border: hasAnswered ? 'none' : '1px solid rgba(255,255,255,0.1)',
+                    backgroundColor: currentBlock?.color || '#00ADE0',
+                    color: '#fff',
                     fontSize: '0.95rem',
-                    opacity: hasAnswered ? 1 : 0.3,
                     cursor: hasAnswered ? 'pointer' : 'not-allowed',
                   }}
                 >
@@ -496,8 +494,8 @@ export default function FinalCheck() {
 
               {/* Enter hint */}
               <div className="text-center mt-4">
-                <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '11px' }}>
-                  Enter dr\u00fccken \u21B5
+                <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '12px' }}>
+                  Enter drücken ↵
                 </span>
               </div>
             </motion.div>
