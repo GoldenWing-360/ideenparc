@@ -165,6 +165,7 @@ export default function FinalCheck() {
         overallScore={evaluation.overallScore}
         maturityLevel={evaluation.maturityLevel}
         blockScores={evaluation.blockScores}
+        answers={assessment.answers}
         clarityScore={evaluation.clarityScore}
         executionScore={evaluation.executionScore}
         matrixQuadrant={evaluation.matrixQuadrant}

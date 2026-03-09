@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import type { BlockId } from '../../data/questions';
-import { blocks } from '../../data/questions';
+import { blocks, allQuestions } from '../../data/questions';
 import type { MaturityLevel, MatrixQuadrant } from '../../data/evaluation';
 import { maturityLevels, matrixQuadrants } from '../../data/evaluation';
 import { getIcon } from '../../data/icons';
@@ -15,6 +15,7 @@ interface FinalResultsProps {
   clarityScore: number;
   executionScore: number;
   matrixQuadrant: MatrixQuadrant;
+  answers: Record<string, number>;
   onReset: () => void;
 }
 
@@ -102,6 +103,7 @@ export default function FinalResults({
   clarityScore,
   executionScore,
   matrixQuadrant,
+  answers,
   onReset,
 }: FinalResultsProps) {
   const [consultOpen, setConsultOpen] = useState(false);
@@ -138,6 +140,11 @@ export default function FinalResults({
         },
         strategischeKlarheit: clarityScore,
         umsetzungsstaerke: executionScore,
+        einzelantworten: allQuestions.map((q) => ({
+          frage: q.text,
+          block: q.blockId,
+          prozent: answers[q.id] ?? 0,
+        })),
       },
     });
     setConsultSubmitting(false);
