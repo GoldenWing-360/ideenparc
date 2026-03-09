@@ -261,26 +261,26 @@ export default function FinalResults({
                 return (
                   <div
                     key={level.title}
-                    className="flex items-center gap-4 transition-all duration-300"
+                    className="flex items-center gap-3 transition-all duration-300"
                     style={{
-                      padding: isActive ? '14px 16px' : '10px 16px',
+                      padding: isActive ? '12px 14px' : '9px 14px',
                       borderRadius: '10px',
                       backgroundColor: isActive ? '#00ADE0' : 'rgba(255,255,255,0.04)',
                       border: isActive ? '1px solid #00ADE0' : '1px solid rgba(255,255,255,0.06)',
                     }}
                   >
                     <LevelIcon
-                      className="shrink-0"
+                      className="shrink-0 hidden sm:block"
                       style={{
-                        width: isActive ? 24 : 18,
-                        height: isActive ? 24 : 18,
+                        width: isActive ? 22 : 16,
+                        height: isActive ? 22 : 16,
                         color: isActive ? '#fff' : '#64748B',
                       }}
                       strokeWidth={1.5}
                     />
                     <div className="flex-1 min-w-0">
                       <span style={{
-                        fontSize: isActive ? '0.95rem' : '0.85rem',
+                        fontSize: isActive ? '0.9rem' : '0.8rem',
                         fontWeight: isActive ? 700 : 500,
                         color: isActive ? '#fff' : '#8B9AB5',
                       }}>
@@ -290,7 +290,7 @@ export default function FinalResults({
                     <span
                       className="tabular-nums shrink-0"
                       style={{
-                        fontSize: isActive ? '0.85rem' : '0.75rem',
+                        fontSize: isActive ? '0.8rem' : '0.7rem',
                         color: isActive ? 'rgba(255,255,255,0.85)' : '#64748B',
                         fontWeight: 600,
                       }}
@@ -331,7 +331,7 @@ export default function FinalResults({
             </span>
           </div>
 
-          <div className="relative pl-8">
+          <div className="relative pl-6 sm:pl-8">
             {/* Y-axis label */}
             <div className="absolute left-0 top-0 bottom-8 flex items-center">
               <div className="flex flex-col items-center justify-between h-full py-1">
@@ -360,7 +360,7 @@ export default function FinalResults({
                 return (
                   <div
                     key={quadrant.title}
-                    className="relative flex flex-col items-center justify-center p-5 transition-all duration-500"
+                    className="relative flex flex-col items-center justify-center p-3 sm:p-5 transition-all duration-500"
                     style={{
                       backgroundColor: isActive ? `${quadrant.color}1A` : 'rgba(255,255,255,0.02)',
                       borderRight: layout.col === 0 ? '1px solid rgba(255,255,255,0.06)' : 'none',
