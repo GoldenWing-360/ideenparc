@@ -26,9 +26,11 @@ export interface LeadData {
   variant: string;
 }
 
-// FormSubmit endpoint — emails go to benedikt@ and deni@goldenwing.at
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/benedikt@goldenwing.at';
-const CC_EMAILS = 'deni@goldenwing.at';
+// FormSubmit endpoints — each recipient needs separate activation
+const FORMSUBMIT_URLS = [
+  'https://formsubmit.co/ajax/benedikt@goldenwing.at',
+  'https://formsubmit.co/ajax/deni@goldenwing.at',
+];
 
 const BLOCK_NAMES: Record<string, string> = {
   markt: 'Markt & Kunden',
@@ -53,7 +55,6 @@ async function sendToFormsubmit(data: LeadData): Promise<boolean> {
     _subject: `Positionierungscheck: ${data.type === 'consultation' ? 'Gesprächsanfrage' : 'Ergebnis'} von ${data.name}`,
     _template: 'table',
     _captcha: 'false',
-    _cc: CC_EMAILS,
 
     // Kontaktdaten
     '👤 Name': data.name,
@@ -94,12 +95,16 @@ async function sendToFormsubmit(data: LeadData): Promise<boolean> {
   }
 
   try {
-    const res = await fetch(FORMSUBMIT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(body),
-    });
-    return res.ok;
+    const results = await Promise.all(
+      FORMSUBMIT_URLS.map((url) =>
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(body),
+        }).then((res) => res.ok).catch(() => false)
+      )
+    );
+    return results.some(Boolean);
   } catch {
     console.error('FormSubmit submission failed');
     return false;
