@@ -419,7 +419,7 @@ export default function FinalCheck() {
               {/* Block label */}
               <p
                 className="uppercase tracking-[3px] mb-6 text-center"
-                style={{ color: currentBlock?.color, fontSize: '13px', fontWeight: 600 }}
+                style={{ color: currentBlock?.color, fontSize: '15px', fontWeight: 600 }}
               >
                 {blockLabels[currentBlock?.id || '']}
               </p>
