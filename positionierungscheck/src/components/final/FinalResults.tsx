@@ -516,7 +516,7 @@ export default function FinalResults({
                       className="mt-1 w-4 h-4 rounded accent-[#00ADE0]" required />
                     <span style={{ color: '#64748B', fontSize: '0.75rem', lineHeight: 1.5 }}>
                       Ich stimme der Verarbeitung meiner Daten gemäß der{' '}
-                      <a href="/datenschutz" className="underline hover:text-[#94A3B8]" style={{ color: '#64748B' }}>Datenschutzerklärung</a>{' '}
+                      <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#94A3B8]" style={{ color: '#64748B' }}>Datenschutzerklärung</a>{' '}
                       zu. *
                     </span>
                   </label>
@@ -555,8 +555,8 @@ export default function FinalResults({
               Ein Projekt von GoldenWing Digital
             </p>
             <div className="mt-1 space-x-3">
-              <a href="/impressum" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Impressum</a>
-              <a href="/datenschutz" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Datenschutz</a>
+              <a href="https://www.ideenparc.net/kontaktseite-deutsch/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Impressum</a>
+              <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Datenschutz</a>
               <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>ideenparc.net</a>
             </div>
           </div>
