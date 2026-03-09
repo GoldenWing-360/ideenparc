@@ -314,7 +314,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
                 className="mb-10 mx-auto max-w-[520px]"
-                style={{ color: '#64748B', fontSize: '0.85rem', lineHeight: 1.7 }}
+                style={{ color: '#94A3B8', fontSize: '1.1rem', lineHeight: 1.7 }}
               >
                 Der Check basiert auf über 25 Jahren Projekterfahrung von ideenparc und mehr als
                 100 Positionierungs- und Marketingprojekten. Das zugrunde liegende Ideal-Real-Optimal
