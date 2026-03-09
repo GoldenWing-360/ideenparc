@@ -365,7 +365,7 @@ export default function FinalResults({
                       backgroundColor: isActive ? `${quadrant.color}1A` : 'rgba(255,255,255,0.02)',
                       borderRight: layout.col === 0 ? '1px solid rgba(255,255,255,0.06)' : 'none',
                       borderBottom: layout.row === 0 ? '1px solid rgba(255,255,255,0.06)' : 'none',
-                      opacity: isActive ? 1 : 0.4,
+                      opacity: 1,
                     }}
                   >
                     <Icon
