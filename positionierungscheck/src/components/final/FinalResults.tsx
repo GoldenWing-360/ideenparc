@@ -166,18 +166,18 @@ export default function FinalResults({
         {/* Header — no logo on results page */}
         <motion.div className="text-center" initial="hidden" animate="visible" custom={0} variants={stagger}>
           <p
-            className="uppercase tracking-[3px] mb-4"
-            style={{ color: '#64748B', fontSize: '11px', fontWeight: 600 }}
+            className="uppercase tracking-[4px] mb-4"
+            style={{ color: '#94A3B8', fontSize: '13px', fontWeight: 600 }}
           >
             Ihr Ergebnis
           </p>
           <h2
-            className="mb-3"
-            style={{ color: '#F1F5F9', fontSize: '2rem', fontWeight: 700 }}
+            className="mb-4"
+            style={{ color: '#F1F5F9', fontSize: '2.25rem', fontWeight: 700 }}
           >
             Klar auf den Punkt
           </h2>
-          <p style={{ color: '#94A3B8', fontSize: '1rem', lineHeight: 1.7 }}>
+          <p style={{ color: '#CBD5E1', fontSize: '1.05rem', lineHeight: 1.8 }}>
             Auf Basis Ihrer Einschätzungen lässt sich eine erste fundierte Einordnung
             Ihrer aktuellen Marktpositionierung ableiten.
           </p>
@@ -201,7 +201,7 @@ export default function FinalResults({
             </div>
             <p
               className="mt-4 mx-auto max-w-lg"
-              style={{ color: '#94A3B8', fontSize: '0.9rem', lineHeight: 1.8 }}
+              style={{ color: '#CBD5E1', fontSize: '1rem', lineHeight: 1.8 }}
             >
               {maturityLevel.text}
             </p>
