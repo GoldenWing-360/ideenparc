@@ -476,7 +476,7 @@ export default function FinalResults({
                   >
                     Gespräch vereinbaren
                   </button>
-                  <p className="mt-4" style={{ color: '#94A3B8', fontSize: '0.85rem' }}>
+                  <p className="mt-4" style={{ color: '#CBD5E1', fontSize: '1rem', fontWeight: 500 }}>
                     Kostenfrei · Unverbindlich · Persönlich
                   </p>
                 </div>
