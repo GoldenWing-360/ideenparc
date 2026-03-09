@@ -380,8 +380,8 @@ export default function FinalResults({
                     <span
                       className="text-center font-semibold"
                       style={{
-                        fontSize: isActive ? '0.85rem' : '0.75rem',
-                        color: isActive ? '#F1F5F9' : '#64748B',
+                        fontSize: isActive ? '0.9rem' : '0.8rem',
+                        color: isActive ? '#F1F5F9' : '#94A3B8',
                       }}
                     >
                       {quadrant.title}
@@ -419,10 +419,10 @@ export default function FinalResults({
                 <div className="flex items-start gap-3">
                   <ActiveIcon className="w-5 h-5 shrink-0 mt-0.5" style={{ color: matrixQuadrant.color }} strokeWidth={1.5} />
                   <div>
-                    <h4 style={{ color: '#F1F5F9', fontWeight: 600, fontSize: '1rem' }}>
+                    <h4 style={{ color: '#F1F5F9', fontWeight: 600, fontSize: '1.1rem' }}>
                       {matrixQuadrant.title}
                     </h4>
-                    <p className="mt-2" style={{ color: '#94A3B8', fontSize: '0.85rem', lineHeight: 1.7 }}>
+                    <p className="mt-2" style={{ color: '#CBD5E1', fontSize: '0.95rem', lineHeight: 1.7 }}>
                       {matrixQuadrant.text}
                     </p>
                   </div>
