@@ -26,8 +26,9 @@ export interface LeadData {
   variant: string;
 }
 
-// FormSubmit endpoint — emails go to jbenkovich@ideenparc.net
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/jbenkovich@ideenparc.net';
+// FormSubmit endpoint — emails go to benedikt@ and deni@goldenwing.at
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/benedikt@goldenwing.at';
+const CC_EMAILS = 'deni@goldenwing.at';
 
 const BLOCK_NAMES: Record<string, string> = {
   markt: 'Markt & Kunden',
@@ -52,6 +53,7 @@ async function sendToFormsubmit(data: LeadData): Promise<boolean> {
     _subject: `Positionierungscheck: ${data.type === 'consultation' ? 'Gesprächsanfrage' : 'Ergebnis'} von ${data.name}`,
     _template: 'table',
     _captcha: 'false',
+    _cc: CC_EMAILS,
 
     // Kontaktdaten
     '👤 Name': data.name,
