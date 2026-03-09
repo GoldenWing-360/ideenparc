@@ -127,6 +127,18 @@ export default function FinalResults({
       type: 'consultation',
       timestamp: new Date().toISOString(),
       variant: 'final',
+      results: {
+        overallScore,
+        reifegrad: maturityLevel.title,
+        matrixQuadrant: matrixQuadrant.title,
+        blockScores: {
+          markt: blockScores.markt,
+          wettbewerb: blockScores.wettbewerb,
+          unternehmen: blockScores.unternehmen,
+        },
+        strategischeKlarheit: clarityScore,
+        umsetzungsstaerke: executionScore,
+      },
     });
     setConsultSubmitting(false);
     setConsultSubmitted(true);
