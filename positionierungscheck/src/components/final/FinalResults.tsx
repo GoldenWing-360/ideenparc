@@ -373,7 +373,7 @@ export default function FinalResults({
                       style={{
                         width: isActive ? 28 : 18,
                         height: isActive ? 28 : 18,
-                        color: isActive ? quadrant.color : '#64748B',
+                        color: isActive ? quadrant.color : '#ffffff',
                       }}
                       strokeWidth={1.5}
                     />
@@ -381,7 +381,7 @@ export default function FinalResults({
                       className="text-center font-semibold"
                       style={{
                         fontSize: isActive ? '0.9rem' : '0.8rem',
-                        color: isActive ? '#F1F5F9' : '#94A3B8',
+                        color: isActive ? '#F1F5F9' : '#ffffff',
                       }}
                     >
                       {quadrant.title}
