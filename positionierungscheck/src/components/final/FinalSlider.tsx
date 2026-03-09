@@ -175,23 +175,23 @@ export default function FinalSlider({
 
       {/* Labels */}
       <div className="flex justify-between mt-3">
-        <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '13px', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '14px', fontFamily: "'Titillium Web', sans-serif" }}>
           trifft gar nicht zu
         </span>
-        <span style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '13px', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '14px', fontFamily: "'Titillium Web', sans-serif" }}>
           trifft voll und ganz zu
         </span>
       </div>
 
       {/* Tick labels — show 0, 50, 100 */}
       <div className="flex justify-between mt-1">
-        <span style={{ color: 'rgba(255, 255, 255, 0.35)', fontSize: '11px', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: 'rgba(255, 255, 255, 0.45)', fontSize: '12px', fontFamily: "'Titillium Web', sans-serif" }}>
           0%
         </span>
-        <span style={{ color: 'rgba(255, 255, 255, 0.35)', fontSize: '11px', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: 'rgba(255, 255, 255, 0.45)', fontSize: '12px', fontFamily: "'Titillium Web', sans-serif" }}>
           50%
         </span>
-        <span style={{ color: 'rgba(255, 255, 255, 0.35)', fontSize: '11px', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: 'rgba(255, 255, 255, 0.45)', fontSize: '12px', fontFamily: "'Titillium Web', sans-serif" }}>
           100%
         </span>
       </div>

@@ -378,7 +378,7 @@ export default function FinalCheck() {
               />
               <p
                 className="uppercase tracking-[3px] mb-4"
-                style={{ color: currentBlock.color, fontSize: '12px', fontWeight: 600 }}
+                style={{ color: currentBlock.color, fontSize: '14px', fontWeight: 600 }}
               >
                 {blockLabels[currentBlock.id]}
               </p>
@@ -419,7 +419,7 @@ export default function FinalCheck() {
               {/* Block label */}
               <p
                 className="uppercase tracking-[3px] mb-6 text-center"
-                style={{ color: currentBlock?.color, fontSize: '10px', fontWeight: 600 }}
+                style={{ color: currentBlock?.color, fontSize: '13px', fontWeight: 600 }}
               >
                 {blockLabels[currentBlock?.id || '']}
               </p>
@@ -505,12 +505,6 @@ export default function FinalCheck() {
                 ))}
               </div>
 
-              {/* Enter hint */}
-              <div className="text-center mt-4">
-                <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '12px' }}>
-                  Enter drücken ↵
-                </span>
-              </div>
             </motion.div>
           )}
 
