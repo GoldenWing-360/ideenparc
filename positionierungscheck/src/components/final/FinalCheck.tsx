@@ -299,9 +299,9 @@ export default function FinalCheck() {
                 className="mb-6 leading-tight"
                 style={{ color: '#F1F5F9', fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: 700 }}
               >
-                Sie haben eine starke relevante Positionierung!
+                Sie haben eine starke relevante
                 <br />
-                <span style={{ color: '#00ADE0' }}>Wirklich?</span>
+                Positionierung! <span style={{ color: '#00ADE0' }}>Wirklich?</span>
               </motion.h1>
 
               {/* Second sentence */}
