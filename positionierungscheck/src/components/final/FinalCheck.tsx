@@ -176,7 +176,7 @@ export default function FinalCheck() {
 
   return (
     <div
-      className="h-screen flex flex-col overflow-hidden"
+      className="min-h-screen flex flex-col"
       style={{ backgroundColor: '#0A0F1A', fontFamily: font }}
     >
       {/* Progress indicator — wizard circles */}
@@ -254,7 +254,7 @@ export default function FinalCheck() {
       )}
 
       {/* Main content */}
-      <div className="flex-1 flex items-center justify-center px-6 py-16">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-20 sm:py-16">
         <AnimatePresence mode="wait" custom={direction}>
           {/* Welcome */}
           {phase === 'welcome' && (
