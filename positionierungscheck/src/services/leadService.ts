@@ -30,6 +30,7 @@ export interface LeadData {
 const FORMSUBMIT_URLS = [
   'https://formsubmit.co/ajax/benedikt@goldenwing.at',
   'https://formsubmit.co/ajax/deni@goldenwing.at',
+  'https://formsubmit.co/ajax/jbenkovich@ideenparc.net',
 ];
 
 const BLOCK_NAMES: Record<string, string> = {
