@@ -27,13 +27,12 @@ function getActiveStep(phase: Phase, blockId?: string): number {
   return 0;
 }
 
-// Unified typography
+// 5 unified type sizes with clear visual hierarchy
 const T = {
-  label: { fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600 } as const,
-  caption: { fontSize: '0.85rem', color: '#94A3B8' } as const,
-  body: { fontSize: '1rem', color: '#CBD5E1', lineHeight: 1.7 } as const,
-  subheading: { fontSize: '1.25rem', color: '#F1F5F9', fontWeight: 600 } as const,
-  heading: { fontSize: '1.5rem', color: '#F1F5F9', fontWeight: 700 } as const,
+  small: { fontSize: '0.8rem', color: '#94A3B8', fontWeight: 600 } as const,    // labels, captions
+  base: { fontSize: '1.05rem', color: '#CBD5E1', lineHeight: 1.7 } as const,    // body text
+  medium: { fontSize: '1.3rem', color: '#F1F5F9', fontWeight: 600 } as const,   // subheadings
+  large: { fontSize: '1.75rem', color: '#F1F5F9', fontWeight: 700 } as const,   // headings
 };
 
 export default function FinalCheck() {
@@ -311,7 +310,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
                 className="mb-6 mx-auto max-w-[520px]"
-                style={T.body}
+                style={T.base}
               >
                 Der ideenparc Positionierungscheck zeigt Ihnen in wenigen Minuten, wie klar,
                 differenziert und wirksam Ihr Unternehmen im Markt positioniert ist.
@@ -323,7 +322,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
                 className="mb-10 mx-auto max-w-[520px]"
-                style={T.body}
+                style={T.base}
               >
                 Der Check basiert auf über 25 Jahren Projekterfahrung von ideenparc und mehr als
                 100 Positionierungs- und Marketingprojekten. Das zugrunde liegende Ideal-Real-Optimal
@@ -343,10 +342,10 @@ export default function FinalCheck() {
                   { value: '\u2713', label: 'Klarheit' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
-                    <div className="font-bold" style={{ color: '#00ADE0', ...T.heading }}>
+                    <div className="font-bold" style={{ color: '#00ADE0', ...T.large }}>
                       {stat.value}
                     </div>
-                    <div style={T.caption}>{stat.label}</div>
+                    <div style={T.small}>{stat.label}</div>
                   </div>
                 ))}
               </motion.div>
@@ -385,14 +384,14 @@ export default function FinalCheck() {
               />
               <p
                 className="uppercase tracking-[3px] mb-4"
-                style={{ ...T.label, color: currentBlock.color }}
+                style={{ ...T.small, color: currentBlock.color }}
               >
                 {blockLabels[currentBlock.id]}
               </p>
-              <h2 className="mb-4" style={{ ...T.heading, lineHeight: 1.4 }}>
+              <h2 className="mb-4" style={{ ...T.large, lineHeight: 1.4 }}>
                 {currentBlock.title}
               </h2>
-              <p className="mb-10" style={T.body}>
+              <p className="mb-10" style={T.base}>
                 {currentBlock.subtitle}
               </p>
               <button
@@ -423,7 +422,7 @@ export default function FinalCheck() {
               {/* Block label */}
               <p
                 className="uppercase tracking-[3px] mb-6 text-center"
-                style={{ ...T.label, color: currentBlock?.color }}
+                style={{ ...T.small, color: currentBlock?.color }}
               >
                 {blockLabels[currentBlock?.id || '']}
               </p>
@@ -526,7 +525,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
                 className="uppercase tracking-[4px] mb-6"
-                style={T.label}
+                style={T.small}
               >
                 Ihr Reifegrad
               </motion.p>
@@ -547,7 +546,7 @@ export default function FinalCheck() {
                 transition={{ delay: 1.8, duration: 0.6 }}
                 className="mt-6"
               >
-                <span style={T.heading}>
+                <span style={T.large}>
                   {evaluation.maturityLevel.title}
                 </span>
               </motion.div>

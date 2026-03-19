@@ -97,6 +97,8 @@ export default function FinalSlider({
     [value, onChange]
   );
 
+  const TRACK_H = 20; // px — much thicker track for easier clicking
+
   return (
     <div className="w-full select-none">
       {/* Value display */}
@@ -124,9 +126,9 @@ export default function FinalSlider({
             style={{
               left: `${tick}%`,
               transform: 'translateX(-50%)',
-              width: '1.5px',
+              width: '2px',
               height: tick % 50 === 0 ? '14px' : '8px',
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              backgroundColor: 'rgba(255, 255, 255, 0.25)',
             }}
           />
         ))}
@@ -135,8 +137,8 @@ export default function FinalSlider({
       {/* Track + Thumb area */}
       <div
         ref={trackRef}
-        className="relative h-3 rounded-full cursor-pointer"
-        style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+        className="relative rounded-full cursor-pointer"
+        style={{ height: `${TRACK_H}px`, backgroundColor: 'rgba(255, 255, 255, 0.12)' }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         role="slider"
@@ -149,8 +151,9 @@ export default function FinalSlider({
       >
         {/* Filled track */}
         <div
-          className="absolute top-0 left-0 h-3 rounded-full transition-all duration-75"
+          className="absolute top-0 left-0 rounded-full transition-all duration-75"
           style={{
+            height: `${TRACK_H}px`,
             width: `${value}%`,
             backgroundColor: color,
             boxShadow: `0 0 12px ${color}40`,
@@ -159,7 +162,7 @@ export default function FinalSlider({
 
         {/* Thumb */}
         <div
-          className={`absolute top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border-2 border-white transition-transform duration-75 ${
+          className={`absolute top-1/2 -translate-y-1/2 w-9 h-9 rounded-full border-[3px] border-white transition-transform duration-75 ${
             isDragging ? 'scale-125' : 'hover:scale-110'
           }`}
           style={{
@@ -175,23 +178,23 @@ export default function FinalSlider({
 
       {/* Labels */}
       <div className="flex justify-between mt-3">
-        <span className="text-[13px] sm:text-[16px]" style={{ color: 'rgba(255, 255, 255, 0.85)', fontWeight: 500, fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: '#CBD5E1', fontSize: '0.9rem', fontWeight: 500, fontFamily: "'Titillium Web', sans-serif" }}>
           trifft gar nicht zu
         </span>
-        <span className="text-[13px] sm:text-[16px]" style={{ color: 'rgba(255, 255, 255, 0.85)', fontWeight: 500, fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: '#CBD5E1', fontSize: '0.9rem', fontWeight: 500, fontFamily: "'Titillium Web', sans-serif" }}>
           trifft voll und ganz zu
         </span>
       </div>
 
       {/* Tick labels — show 0, 50, 100 */}
       <div className="flex justify-between mt-1">
-        <span className="text-[12px] sm:text-[14px]" style={{ color: 'rgba(255, 255, 255, 0.6)', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: '#94A3B8', fontSize: '0.85rem', fontFamily: "'Titillium Web', sans-serif" }}>
           0%
         </span>
-        <span className="text-[12px] sm:text-[14px]" style={{ color: 'rgba(255, 255, 255, 0.6)', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: '#94A3B8', fontSize: '0.85rem', fontFamily: "'Titillium Web', sans-serif" }}>
           50%
         </span>
-        <span className="text-[12px] sm:text-[14px]" style={{ color: 'rgba(255, 255, 255, 0.6)', fontFamily: "'Titillium Web', sans-serif" }}>
+        <span style={{ color: '#94A3B8', fontSize: '0.85rem', fontFamily: "'Titillium Web', sans-serif" }}>
           100%
         </span>
       </div>

@@ -32,14 +32,13 @@ const quadrantLayout = [
   { clarityHigh: false, executionHigh: true, row: 1, col: 1 },
 ];
 
-// Unified typography
+// 5 unified type sizes with clear visual hierarchy
 const T = {
-  label: { fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600 } as const,
-  caption: { fontSize: '0.85rem', color: '#94A3B8' } as const,
-  body: { fontSize: '1rem', color: '#CBD5E1', lineHeight: 1.7 } as const,
-  subheading: { fontSize: '1.25rem', color: '#F1F5F9', fontWeight: 600 } as const,
-  heading: { fontSize: '1.5rem', color: '#F1F5F9', fontWeight: 700 } as const,
-  footer: { fontSize: '0.8rem', color: '#64748B' } as const,
+  small: { fontSize: '0.8rem', color: '#94A3B8', fontWeight: 600 } as const,    // labels, captions, footer
+  base: { fontSize: '1.05rem', color: '#CBD5E1', lineHeight: 1.7 } as const,    // body text, descriptions
+  medium: { fontSize: '1.3rem', color: '#F1F5F9', fontWeight: 600 } as const,   // card titles, subheadings
+  large: { fontSize: '1.75rem', color: '#F1F5F9', fontWeight: 700 } as const,   // section headings
+  muted: { fontSize: '0.8rem', color: '#64748B' } as const,                     // footer, legal
 };
 
 function AnimatedRing({ value, size = 200 }: { value: number; size?: number }) {
@@ -177,14 +176,14 @@ export default function FinalResults({
         <motion.div className="text-center" initial="hidden" animate="visible" custom={0} variants={stagger}>
           <p
             className="uppercase tracking-[4px] mb-4"
-            style={T.label}
+            style={T.small}
           >
             Ihr Ergebnis
           </p>
           <h2 className="mb-4" style={{ color: '#F1F5F9', fontSize: '2rem', fontWeight: 700 }}>
             Klar auf den Punkt
           </h2>
-          <p style={T.body}>
+          <p style={T.base}>
             Auf Basis Ihrer Einschätzungen lässt sich eine erste fundierte Einordnung
             Ihrer aktuellen Marktpositionierung ableiten.
           </p>
@@ -202,11 +201,11 @@ export default function FinalResults({
               <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(0,173,224,0.1)' }}>
                 <MaturityIcon className="w-6 h-6" style={{ color: '#00ADE0' }} strokeWidth={1.5} />
               </div>
-              <h3 style={T.heading}>
+              <h3 style={T.large}>
                 {maturityLevel.title}
               </h3>
             </div>
-            <p className="mt-4 mx-auto max-w-lg" style={T.body}>
+            <p className="mt-4 mx-auto max-w-lg" style={T.base}>
               {maturityLevel.text}
             </p>
           </div>
@@ -216,7 +215,7 @@ export default function FinalResults({
             className="pt-8 space-y-5"
             style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
           >
-            <p className="uppercase tracking-[3px] mb-4" style={T.label}>
+            <p className="uppercase tracking-[3px] mb-4" style={T.small}>
               Ergebnisse nach Bereich
             </p>
             {blocks.map((block, i) => {
@@ -230,8 +229,8 @@ export default function FinalResults({
                   transition={{ delay: 1.2 + i * 0.2, duration: 0.5 }}
                 >
                   <div className="flex justify-between mb-2">
-                    <span style={T.caption}>{meta.label}</span>
-                    <span className="tabular-nums" style={{ ...T.caption, color: meta.color, fontWeight: 700 }}>{score}%</span>
+                    <span style={T.small}>{meta.label}</span>
+                    <span className="tabular-nums" style={{ ...T.small, color: meta.color, fontWeight: 700 }}>{score}%</span>
                   </div>
                   <div className="h-1.5 rounded-full" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
                     <motion.div
@@ -249,7 +248,7 @@ export default function FinalResults({
 
           {/* Maturity Scale */}
           <div className="pt-8 mt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-            <p className="uppercase tracking-[3px] mb-4" style={T.label}>
+            <p className="uppercase tracking-[3px] mb-4" style={T.small}>
               Reifegrad-Skala
             </p>
             <div className="flex flex-col gap-1.5">
@@ -278,7 +277,7 @@ export default function FinalResults({
                     />
                     <div className="flex-1 min-w-0">
                       <span style={{
-                        fontSize: isActive ? '1rem' : '0.85rem',
+                        fontSize: isActive ? '1.05rem' : '0.9rem',
                         fontWeight: isActive ? 700 : 500,
                         color: isActive ? '#fff' : '#CBD5E1',
                       }}>
@@ -288,7 +287,7 @@ export default function FinalResults({
                     <span
                       className="tabular-nums shrink-0"
                       style={{
-                        fontSize: '0.85rem',
+                        fontSize: '0.9rem',
                         color: isActive ? 'rgba(255,255,255,0.85)' : '#94A3B8',
                         fontWeight: 600,
                       }}
@@ -308,17 +307,17 @@ export default function FinalResults({
           style={{ backgroundColor: '#111827', border: '1px solid rgba(255,255,255,0.06)' }}
           initial="hidden" animate="visible" custom={2} variants={stagger}
         >
-          <p className="uppercase tracking-[3px] mb-2 text-center" style={T.label}>
+          <p className="uppercase tracking-[3px] mb-2 text-center" style={T.small}>
             Positionierungsmatrix
           </p>
-          <h3 className="text-center mb-2" style={T.heading}>
+          <h3 className="text-center mb-2" style={T.large}>
             Ihre Position
           </h3>
           <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 mb-6">
-            <span style={T.caption}>
+            <span style={T.small}>
               Strategische Klarheit: <strong className="tabular-nums" style={{ color: '#00ADE0' }}>{clarityScore}%</strong>
             </span>
-            <span style={T.caption}>
+            <span style={T.small}>
               Umsetzungsstärke: <strong className="tabular-nums" style={{ color: '#00ADE0' }}>{executionScore}%</strong>
             </span>
           </div>
@@ -327,14 +326,14 @@ export default function FinalResults({
             {/* Y-axis label */}
             <div className="absolute left-0 top-0 bottom-8 flex items-center">
               <div className="flex flex-col items-center justify-between h-full py-1">
-                <span style={{ ...T.footer, fontSize: '0.7rem' }}>Hoch</span>
+                <span style={{ ...T.muted, fontSize: '0.7rem' }}>Hoch</span>
                 <span
                   className="-rotate-90 whitespace-nowrap"
-                  style={{ ...T.label, fontSize: '0.7rem', letterSpacing: '2px' }}
+                  style={{ ...T.small, fontSize: '0.7rem', letterSpacing: '2px' }}
                 >
                   KLARHEIT
                 </span>
-                <span style={{ ...T.footer, fontSize: '0.7rem' }}>Niedrig</span>
+                <span style={{ ...T.muted, fontSize: '0.7rem' }}>Niedrig</span>
               </div>
             </div>
             <div
@@ -371,7 +370,7 @@ export default function FinalResults({
                     <span
                       className="text-center font-semibold"
                       style={{
-                        fontSize: isActive ? '1rem' : '0.85rem',
+                        fontSize: isActive ? '1.05rem' : '0.9rem',
                         color: isActive ? '#F1F5F9' : '#ffffff',
                       }}
                     >
@@ -388,11 +387,11 @@ export default function FinalResults({
             </div>
             {/* X-axis label */}
             <div className="flex items-center justify-between mt-2 px-1">
-              <span style={{ ...T.footer, fontSize: '0.7rem' }}>Niedrig</span>
-              <span style={{ ...T.label, fontSize: '0.7rem', letterSpacing: '2px' }}>
+              <span style={{ ...T.muted, fontSize: '0.7rem' }}>Niedrig</span>
+              <span style={{ ...T.small, fontSize: '0.7rem', letterSpacing: '2px' }}>
                 UMSETZUNG
               </span>
-              <span style={{ ...T.footer, fontSize: '0.7rem' }}>Hoch</span>
+              <span style={{ ...T.muted, fontSize: '0.7rem' }}>Hoch</span>
             </div>
           </div>
 
@@ -410,10 +409,10 @@ export default function FinalResults({
                 <div className="flex items-start gap-3">
                   <ActiveIcon className="w-5 h-5 shrink-0 mt-0.5" style={{ color: matrixQuadrant.color }} strokeWidth={1.5} />
                   <div>
-                    <h4 style={T.subheading}>
+                    <h4 style={T.medium}>
                       {matrixQuadrant.title}
                     </h4>
-                    <p className="mt-2" style={T.body}>
+                    <p className="mt-2" style={T.base}>
                       {matrixQuadrant.text}
                     </p>
                   </div>
@@ -432,10 +431,10 @@ export default function FinalResults({
           {consultSubmitted ? (
             <div className="text-center py-4">
               <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: '#39A958' }} strokeWidth={1.5} />
-              <h3 style={T.heading}>
+              <h3 style={T.large}>
                 Vielen Dank, {consultName.split(' ')[0]}!
               </h3>
-              <p className="mt-2" style={T.caption}>
+              <p className="mt-2" style={T.small}>
                 Wir melden uns innerhalb von 24 Stunden bei Ihnen.
               </p>
             </div>
@@ -445,10 +444,10 @@ export default function FinalResults({
                 <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
                   <Calendar className="w-7 h-7" style={{ color: '#E7E44D' }} strokeWidth={1.5} />
                 </div>
-                <h3 style={T.heading}>
+                <h3 style={T.large}>
                   Lassen Sie uns über Ihr Ergebnis sprechen
                 </h3>
-                <p className="mt-4 mx-auto max-w-lg" style={T.body}>
+                <p className="mt-4 mx-auto max-w-lg" style={T.base}>
                   Auf Basis Ihrer Antworten und ergänzender Recherche durch uns erstellen wir einen erweiterten,
                   kostenfreien Positionierungs-Check für Ihr Unternehmen und besprechen die Ergebnisse in einem
                   persönlichen, 1-stündigen Gespräch.
@@ -464,36 +463,36 @@ export default function FinalResults({
                   >
                     Gespräch vereinbaren
                   </button>
-                  <p className="mt-4" style={{ ...T.body, fontWeight: 500 }}>
+                  <p className="mt-4" style={{ ...T.base, fontWeight: 500 }}>
                     Kostenfrei · Unverbindlich · Persönlich
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleConsultSubmit} className="max-w-md mx-auto space-y-4 text-left mt-6">
                   <div>
-                    <label htmlFor="fin-c-name" className="block mb-1" style={T.caption}>Name *</label>
+                    <label htmlFor="fin-c-name" className="block mb-1" style={T.small}>Name *</label>
                     <input id="fin-c-name" type="text" value={consultName} onChange={(e) => setConsultName(e.target.value)}
                       placeholder="Ihr vollständiger Name" required className={inputClass} style={inputStyle} />
                   </div>
                   <div>
-                    <label htmlFor="fin-c-email" className="block mb-1" style={T.caption}>E-Mail *</label>
+                    <label htmlFor="fin-c-email" className="block mb-1" style={T.small}>E-Mail *</label>
                     <input id="fin-c-email" type="email" value={consultEmail} onChange={(e) => setConsultEmail(e.target.value)}
                       placeholder="ihre@email.de" required className={inputClass} style={inputStyle} />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="fin-c-phone" className="block mb-1" style={T.caption}>Telefon</label>
+                      <label htmlFor="fin-c-phone" className="block mb-1" style={T.small}>Telefon</label>
                       <input id="fin-c-phone" type="tel" value={consultPhone} onChange={(e) => setConsultPhone(e.target.value)}
                         placeholder="Optional" className={inputClass} style={inputStyle} />
                     </div>
                     <div>
-                      <label htmlFor="fin-c-company" className="block mb-1" style={T.caption}>Unternehmen</label>
+                      <label htmlFor="fin-c-company" className="block mb-1" style={T.small}>Unternehmen</label>
                       <input id="fin-c-company" type="text" value={consultCompany} onChange={(e) => setConsultCompany(e.target.value)}
                         placeholder="Optional" className={inputClass} style={inputStyle} />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="fin-c-msg" className="block mb-1" style={T.caption}>Nachricht</label>
+                    <label htmlFor="fin-c-msg" className="block mb-1" style={T.small}>Nachricht</label>
                     <textarea id="fin-c-msg" value={consultMessage} onChange={(e) => setConsultMessage(e.target.value)}
                       placeholder="z.B. spezifische Fragen zu meinem Ergebnis" rows={3}
                       className="w-full px-0 py-2 bg-transparent border-0 border-b outline-none transition-colors focus:border-[#00ADE0] resize-none"
@@ -502,7 +501,7 @@ export default function FinalResults({
                   <label className="flex items-start gap-2 cursor-pointer">
                     <input type="checkbox" checked={consultDsgvo} onChange={(e) => setConsultDsgvo(e.target.checked)}
                       className="mt-1 w-4 h-4 rounded accent-[#00ADE0]" required />
-                    <span style={{ ...T.footer, lineHeight: 1.5 }}>
+                    <span style={{ ...T.muted, lineHeight: 1.5 }}>
                       Ich stimme der Verarbeitung meiner Daten gemäß der{' '}
                       <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#94A3B8]" style={{ color: '#64748B' }}>Datenschutzerklärung</a>{' '}
                       zu. *
@@ -529,23 +528,23 @@ export default function FinalResults({
           <button
             onClick={onReset}
             className="transition-colors"
-            style={T.caption}
+            style={T.small}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#F1F5F9')}
             onMouseLeave={(e) => (e.currentTarget.style.color = '#94A3B8')}
           >
             Check wiederholen
           </button>
           <div className="space-y-2">
-            <p style={T.footer}>
+            <p style={T.muted}>
               ideenparc GmbH · Mandlstraße 26 · 80802 München
             </p>
-            <p style={{ ...T.footer, fontSize: '0.75rem' }}>
+            <p style={{ ...T.muted, fontSize: '0.75rem' }}>
               Ein Projekt von GoldenWing Digital
             </p>
             <div className="mt-1 space-x-3">
-              <a href="https://www.ideenparc.net/kontaktseite-deutsch/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.footer}>Impressum</a>
-              <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.footer}>Datenschutz</a>
-              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.footer}>ideenparc.net</a>
+              <a href="https://www.ideenparc.net/kontaktseite-deutsch/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.muted}>Impressum</a>
+              <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.muted}>Datenschutz</a>
+              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.muted}>ideenparc.net</a>
             </div>
           </div>
         </motion.div>
