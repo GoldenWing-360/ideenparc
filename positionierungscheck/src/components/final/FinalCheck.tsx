@@ -27,12 +27,12 @@ function getActiveStep(phase: Phase, blockId?: string): number {
   return 0;
 }
 
-// 5 unified type sizes with clear visual hierarchy
+// 5 unified type sizes — clearly differentiated
 const T = {
-  small: { fontSize: '0.8rem', color: '#94A3B8', fontWeight: 600 } as const,    // labels, captions
-  base: { fontSize: '1.05rem', color: '#CBD5E1', lineHeight: 1.7 } as const,    // body text
-  medium: { fontSize: '1.3rem', color: '#F1F5F9', fontWeight: 600 } as const,   // subheadings
-  large: { fontSize: '1.75rem', color: '#F1F5F9', fontWeight: 700 } as const,   // headings
+  small: { fontSize: '0.95rem', color: '#CBD5E1', fontWeight: 500 } as const,   // labels, captions
+  base: { fontSize: '1.15rem', color: '#CBD5E1', lineHeight: 1.7 } as const,    // body text
+  medium: { fontSize: '1.4rem', color: '#F1F5F9', fontWeight: 600 } as const,   // subheadings
+  large: { fontSize: '1.85rem', color: '#F1F5F9', fontWeight: 700 } as const,   // headings
 };
 
 export default function FinalCheck() {

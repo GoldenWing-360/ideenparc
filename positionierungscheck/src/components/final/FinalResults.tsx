@@ -32,13 +32,13 @@ const quadrantLayout = [
   { clarityHigh: false, executionHigh: true, row: 1, col: 1 },
 ];
 
-// 5 unified type sizes with clear visual hierarchy
+// 5 unified type sizes — clearly differentiated
 const T = {
-  small: { fontSize: '0.8rem', color: '#94A3B8', fontWeight: 600 } as const,    // labels, captions, footer
-  base: { fontSize: '1.05rem', color: '#CBD5E1', lineHeight: 1.7 } as const,    // body text, descriptions
-  medium: { fontSize: '1.3rem', color: '#F1F5F9', fontWeight: 600 } as const,   // card titles, subheadings
-  large: { fontSize: '1.75rem', color: '#F1F5F9', fontWeight: 700 } as const,   // section headings
-  muted: { fontSize: '0.8rem', color: '#64748B' } as const,                     // footer, legal
+  small: { fontSize: '0.95rem', color: '#CBD5E1', fontWeight: 500 } as const,   // labels, captions
+  base: { fontSize: '1.15rem', color: '#CBD5E1', lineHeight: 1.7 } as const,    // body text, descriptions
+  medium: { fontSize: '1.4rem', color: '#F1F5F9', fontWeight: 600 } as const,   // card titles, subheadings
+  large: { fontSize: '1.85rem', color: '#F1F5F9', fontWeight: 700 } as const,   // section headings
+  muted: { fontSize: '0.85rem', color: '#94A3B8' } as const,                    // footer, legal
 };
 
 function AnimatedRing({ value, size = 200 }: { value: number; size?: number }) {
@@ -277,7 +277,7 @@ export default function FinalResults({
                     />
                     <div className="flex-1 min-w-0">
                       <span style={{
-                        fontSize: isActive ? '1.05rem' : '0.9rem',
+                        fontSize: isActive ? '1.15rem' : '1rem',
                         fontWeight: isActive ? 700 : 500,
                         color: isActive ? '#fff' : '#CBD5E1',
                       }}>
@@ -287,7 +287,7 @@ export default function FinalResults({
                     <span
                       className="tabular-nums shrink-0"
                       style={{
-                        fontSize: '0.9rem',
+                        fontSize: '1rem',
                         color: isActive ? 'rgba(255,255,255,0.85)' : '#94A3B8',
                         fontWeight: 600,
                       }}
@@ -314,28 +314,23 @@ export default function FinalResults({
             Ihre Position
           </h3>
           <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 mb-6">
-            <span style={T.small}>
+            <span style={T.base}>
               Strategische Klarheit: <strong className="tabular-nums" style={{ color: '#00ADE0' }}>{clarityScore}%</strong>
             </span>
-            <span style={T.small}>
+            <span style={T.base}>
               Umsetzungsstärke: <strong className="tabular-nums" style={{ color: '#00ADE0' }}>{executionScore}%</strong>
             </span>
           </div>
 
-          <div className="relative pl-6 sm:pl-8">
-            {/* Y-axis label */}
-            <div className="absolute left-0 top-0 bottom-8 flex items-center">
-              <div className="flex flex-col items-center justify-between h-full py-1">
-                <span style={{ ...T.muted, fontSize: '0.7rem' }}>Hoch</span>
-                <span
-                  className="-rotate-90 whitespace-nowrap"
-                  style={{ ...T.small, fontSize: '0.7rem', letterSpacing: '2px' }}
-                >
-                  KLARHEIT
-                </span>
-                <span style={{ ...T.muted, fontSize: '0.7rem' }}>Niedrig</span>
-              </div>
-            </div>
+          {/* Y-axis label — separate row above grid */}
+          <div className="flex items-center justify-between mb-2 px-1">
+            <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 500 }}>Hoch</span>
+            <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '3px' }}>
+              KLARHEIT
+            </span>
+            <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 500 }}>Niedrig</span>
+          </div>
+          <div className="relative">
             <div
               className="grid grid-cols-2 overflow-hidden rounded-xl"
               style={{ border: '1px solid rgba(255,255,255,0.06)', minHeight: '240px' }}
@@ -370,7 +365,7 @@ export default function FinalResults({
                     <span
                       className="text-center font-semibold"
                       style={{
-                        fontSize: isActive ? '1.05rem' : '0.9rem',
+                        fontSize: isActive ? '1.15rem' : '1rem',
                         color: isActive ? '#F1F5F9' : '#ffffff',
                       }}
                     >
@@ -386,12 +381,12 @@ export default function FinalResults({
               })}
             </div>
             {/* X-axis label */}
-            <div className="flex items-center justify-between mt-2 px-1">
-              <span style={{ ...T.muted, fontSize: '0.7rem' }}>Niedrig</span>
-              <span style={{ ...T.small, fontSize: '0.7rem', letterSpacing: '2px' }}>
+            <div className="flex items-center justify-between mt-3 px-1">
+              <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 500 }}>Niedrig</span>
+              <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '3px' }}>
                 UMSETZUNG
               </span>
-              <span style={{ ...T.muted, fontSize: '0.7rem' }}>Hoch</span>
+              <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 500 }}>Hoch</span>
             </div>
           </div>
 
