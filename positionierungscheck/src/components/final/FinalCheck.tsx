@@ -203,7 +203,7 @@ export default function FinalCheck() {
           </div>
 
           {/* Step circles */}
-          <div className="flex items-center justify-center gap-0 px-4 py-3">
+          <div className="flex items-center justify-center gap-0 px-4 py-4">
             {stepNames.map((name, i) => {
               const isActive = i === activeStep;
               const isCompleted = i < activeStep;
@@ -217,9 +217,10 @@ export default function FinalCheck() {
                 <div key={name} className="flex items-center">
                   {i > 0 && (
                     <div
-                      className="h-px transition-all duration-300"
+                      className="transition-all duration-300"
                       style={{
-                        width: '24px',
+                        width: '32px',
+                        height: '2px',
                         backgroundColor: isCompleted ? '#39A958' : 'rgba(255,255,255,0.1)',
                       }}
                     />
@@ -227,18 +228,18 @@ export default function FinalCheck() {
                   <div
                     className="flex items-center justify-center rounded-full transition-all duration-300 shrink-0"
                     style={{
-                      width: isActive ? 'auto' : '32px',
-                      minWidth: '32px',
-                      height: '32px',
-                      padding: isActive ? '0 12px' : '0',
+                      width: isActive ? 'auto' : '40px',
+                      minWidth: '40px',
+                      height: '40px',
+                      padding: isActive ? '0 16px' : '0',
                       backgroundColor: isActive ? stepColor : 'transparent',
-                      border: `1.5px solid ${stepColor}`,
+                      border: `2px solid ${stepColor}`,
                     }}
                   >
                     {isActive ? (
                       <span
                         className="text-white font-semibold whitespace-nowrap"
-                        style={{ fontSize: '0.75rem' }}
+                        style={{ fontSize: '0.9rem' }}
                       >
                         {name}
                       </span>
@@ -246,7 +247,7 @@ export default function FinalCheck() {
                       <span
                         className="font-semibold"
                         style={{
-                          fontSize: '0.75rem',
+                          fontSize: '0.9rem',
                           color: isCompleted ? '#39A958' : 'rgba(255,255,255,0.4)',
                         }}
                       >
