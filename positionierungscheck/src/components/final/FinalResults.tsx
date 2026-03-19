@@ -522,25 +522,25 @@ export default function FinalResults({
         >
           <button
             onClick={onReset}
-            className="transition-colors"
-            style={T.small}
+            className="underline transition-colors"
+            style={{ fontSize: '0.95rem', color: '#CBD5E1' }}
             onMouseEnter={(e) => (e.currentTarget.style.color = '#F1F5F9')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#94A3B8')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#CBD5E1')}
           >
             Check wiederholen
           </button>
-          <div className="space-y-2">
-            <p style={T.muted}>
+          <div className="space-y-3">
+            <p style={{ fontSize: '0.95rem', color: '#94A3B8' }}>
               ideenparc GmbH · Mandlstraße 26 · 80802 München
             </p>
-            <p style={{ ...T.muted, fontSize: '0.75rem' }}>
+            <div className="space-x-4">
+              <a href="https://www.ideenparc.net/kontaktseite-deutsch/" target="_blank" rel="noopener noreferrer" className="hover:text-[#CBD5E1] transition-colors" style={{ fontSize: '0.95rem', color: '#94A3B8' }}>Impressum</a>
+              <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="hover:text-[#CBD5E1] transition-colors" style={{ fontSize: '0.95rem', color: '#94A3B8' }}>Datenschutz</a>
+              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#CBD5E1] transition-colors" style={{ fontSize: '0.95rem', color: '#94A3B8' }}>ideenparc.net</a>
+            </div>
+            <p style={{ fontSize: '0.8rem', color: '#64748B', marginTop: '1.5rem' }}>
               Ein Projekt von GoldenWing Digital
             </p>
-            <div className="mt-1 space-x-3">
-              <a href="https://www.ideenparc.net/kontaktseite-deutsch/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.muted}>Impressum</a>
-              <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.muted}>Datenschutz</a>
-              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.muted}>ideenparc.net</a>
-            </div>
           </div>
         </motion.div>
       </div>
