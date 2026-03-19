@@ -452,9 +452,9 @@ export default function FinalCheck() {
                   <button
                     onClick={handlePrev}
                     className="transition-colors"
-                    style={{ color: '#475569', fontSize: '0.85rem' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#94A3B8')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#475569')}
+                    style={{ color: '#CBD5E1', fontSize: '1rem', fontWeight: 500 }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#F1F5F9')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#CBD5E1')}
                   >
                     ← Zurück
                   </button>
