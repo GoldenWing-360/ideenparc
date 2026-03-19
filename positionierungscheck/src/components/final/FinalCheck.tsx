@@ -329,12 +329,28 @@ export default function FinalCheck() {
                 Model (IRO) wurde in Konzernen ebenso eingesetzt wie im Mittelstand und bei Start-ups.
               </motion.p>
 
+              {/* Start button */}
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.6 }}
+                onClick={handleStart}
+                className="px-10 py-4 rounded-xl font-semibold transition-all hover:scale-[1.02]"
+                style={{
+                  backgroundColor: '#00ADE0',
+                  color: '#fff',
+                  fontSize: '1rem',
+                }}
+              >
+                Check starten
+              </motion.button>
+
               {/* Stats */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.9 }}
-                className="flex items-center justify-center gap-6 mb-12"
+                transition={{ delay: 1.0 }}
+                className="flex items-center justify-center gap-6 mt-10"
               >
                 {[
                   { value: '22', label: 'Fragen' },
@@ -349,22 +365,6 @@ export default function FinalCheck() {
                   </div>
                 ))}
               </motion.div>
-
-              {/* Start button */}
-              <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.0, duration: 0.6 }}
-                onClick={handleStart}
-                className="px-10 py-4 rounded-xl font-semibold transition-all hover:scale-[1.02]"
-                style={{
-                  backgroundColor: '#00ADE0',
-                  color: '#fff',
-                  fontSize: '1rem',
-                }}
-              >
-                Check starten
-              </motion.button>
             </motion.div>
           )}
 
