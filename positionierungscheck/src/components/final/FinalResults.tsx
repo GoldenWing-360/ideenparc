@@ -32,6 +32,16 @@ const quadrantLayout = [
   { clarityHigh: false, executionHigh: true, row: 1, col: 1 },
 ];
 
+// Unified typography
+const T = {
+  label: { fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600 } as const,
+  caption: { fontSize: '0.85rem', color: '#94A3B8' } as const,
+  body: { fontSize: '1rem', color: '#CBD5E1', lineHeight: 1.7 } as const,
+  subheading: { fontSize: '1.25rem', color: '#F1F5F9', fontWeight: 600 } as const,
+  heading: { fontSize: '1.5rem', color: '#F1F5F9', fontWeight: 700 } as const,
+  footer: { fontSize: '0.8rem', color: '#64748B' } as const,
+};
+
 function AnimatedRing({ value, size = 200 }: { value: number; size?: number }) {
   const [displayValue, setDisplayValue] = useState(0);
   const strokeWidth = 8;
@@ -155,7 +165,7 @@ export default function FinalResults({
   const MaturityIcon = getIcon(maturityLevel.icon);
 
   const inputClass = "w-full px-0 py-2 bg-transparent border-0 border-b outline-none transition-colors focus:border-[#00ADE0]";
-  const inputStyle = { borderBottomColor: 'rgba(255,255,255,0.1)', color: '#F1F5F9', fontSize: '0.9rem' };
+  const inputStyle = { borderBottomColor: 'rgba(255,255,255,0.1)', color: '#F1F5F9', fontSize: '1rem' };
 
   return (
     <div
@@ -163,21 +173,18 @@ export default function FinalResults({
       style={{ backgroundColor: '#0A0F1A', fontFamily: font }}
     >
       <div className="max-w-[680px] mx-auto space-y-20">
-        {/* Header — no logo on results page */}
+        {/* Header */}
         <motion.div className="text-center" initial="hidden" animate="visible" custom={0} variants={stagger}>
           <p
             className="uppercase tracking-[4px] mb-4"
-            style={{ color: '#94A3B8', fontSize: '13px', fontWeight: 600 }}
+            style={T.label}
           >
             Ihr Ergebnis
           </p>
-          <h2
-            className="mb-4"
-            style={{ color: '#F1F5F9', fontSize: '2.25rem', fontWeight: 700 }}
-          >
+          <h2 className="mb-4" style={{ color: '#F1F5F9', fontSize: '2rem', fontWeight: 700 }}>
             Klar auf den Punkt
           </h2>
-          <p style={{ color: '#CBD5E1', fontSize: '1.05rem', lineHeight: 1.8 }}>
+          <p style={T.body}>
             Auf Basis Ihrer Einschätzungen lässt sich eine erste fundierte Einordnung
             Ihrer aktuellen Marktpositionierung ableiten.
           </p>
@@ -195,14 +202,11 @@ export default function FinalResults({
               <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(0,173,224,0.1)' }}>
                 <MaturityIcon className="w-6 h-6" style={{ color: '#00ADE0' }} strokeWidth={1.5} />
               </div>
-              <h3 style={{ color: '#F1F5F9', fontSize: '1.5rem', fontWeight: 700 }}>
+              <h3 style={T.heading}>
                 {maturityLevel.title}
               </h3>
             </div>
-            <p
-              className="mt-4 mx-auto max-w-lg"
-              style={{ color: '#CBD5E1', fontSize: '1rem', lineHeight: 1.8 }}
-            >
+            <p className="mt-4 mx-auto max-w-lg" style={T.body}>
               {maturityLevel.text}
             </p>
           </div>
@@ -212,10 +216,7 @@ export default function FinalResults({
             className="pt-8 space-y-5"
             style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
           >
-            <p
-              className="uppercase tracking-[3px] mb-4"
-              style={{ color: '#64748B', fontSize: '10px', fontWeight: 600 }}
-            >
+            <p className="uppercase tracking-[3px] mb-4" style={T.label}>
               Ergebnisse nach Bereich
             </p>
             {blocks.map((block, i) => {
@@ -229,8 +230,8 @@ export default function FinalResults({
                   transition={{ delay: 1.2 + i * 0.2, duration: 0.5 }}
                 >
                   <div className="flex justify-between mb-2">
-                    <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>{meta.label}</span>
-                    <span className="tabular-nums" style={{ color: meta.color, fontSize: '0.85rem', fontWeight: 700 }}>{score}%</span>
+                    <span style={T.caption}>{meta.label}</span>
+                    <span className="tabular-nums" style={{ ...T.caption, color: meta.color, fontWeight: 700 }}>{score}%</span>
                   </div>
                   <div className="h-1.5 rounded-full" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
                     <motion.div
@@ -246,12 +247,9 @@ export default function FinalResults({
             })}
           </div>
 
-          {/* Maturity Scale — more readable inactive levels */}
+          {/* Maturity Scale */}
           <div className="pt-8 mt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-            <p
-              className="uppercase tracking-[3px] mb-4"
-              style={{ color: '#64748B', fontSize: '10px', fontWeight: 600 }}
-            >
+            <p className="uppercase tracking-[3px] mb-4" style={T.label}>
               Reifegrad-Skala
             </p>
             <div className="flex flex-col gap-1.5">
@@ -274,15 +272,15 @@ export default function FinalResults({
                       style={{
                         width: isActive ? 22 : 16,
                         height: isActive ? 22 : 16,
-                        color: isActive ? '#fff' : '#64748B',
+                        color: isActive ? '#fff' : '#94A3B8',
                       }}
                       strokeWidth={1.5}
                     />
                     <div className="flex-1 min-w-0">
                       <span style={{
-                        fontSize: isActive ? '0.9rem' : '0.8rem',
+                        fontSize: isActive ? '1rem' : '0.85rem',
                         fontWeight: isActive ? 700 : 500,
-                        color: isActive ? '#fff' : '#8B9AB5',
+                        color: isActive ? '#fff' : '#CBD5E1',
                       }}>
                         {level.title}
                       </span>
@@ -290,8 +288,8 @@ export default function FinalResults({
                     <span
                       className="tabular-nums shrink-0"
                       style={{
-                        fontSize: isActive ? '0.8rem' : '0.7rem',
-                        color: isActive ? 'rgba(255,255,255,0.85)' : '#64748B',
+                        fontSize: '0.85rem',
+                        color: isActive ? 'rgba(255,255,255,0.85)' : '#94A3B8',
                         fontWeight: 600,
                       }}
                     >
@@ -310,23 +308,17 @@ export default function FinalResults({
           style={{ backgroundColor: '#111827', border: '1px solid rgba(255,255,255,0.06)' }}
           initial="hidden" animate="visible" custom={2} variants={stagger}
         >
-          <p
-            className="uppercase tracking-[3px] mb-2 text-center"
-            style={{ color: '#64748B', fontSize: '10px', fontWeight: 600 }}
-          >
+          <p className="uppercase tracking-[3px] mb-2 text-center" style={T.label}>
             Positionierungsmatrix
           </p>
-          <h3
-            className="text-center mb-2"
-            style={{ color: '#F1F5F9', fontSize: '1.5rem', fontWeight: 700 }}
-          >
+          <h3 className="text-center mb-2" style={T.heading}>
             Ihre Position
           </h3>
-          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 mb-6" style={{ fontSize: '0.85rem' }}>
-            <span style={{ color: '#94A3B8' }}>
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6 mb-6">
+            <span style={T.caption}>
               Strategische Klarheit: <strong className="tabular-nums" style={{ color: '#00ADE0' }}>{clarityScore}%</strong>
             </span>
-            <span style={{ color: '#94A3B8' }}>
+            <span style={T.caption}>
               Umsetzungsstärke: <strong className="tabular-nums" style={{ color: '#00ADE0' }}>{executionScore}%</strong>
             </span>
           </div>
@@ -335,14 +327,14 @@ export default function FinalResults({
             {/* Y-axis label */}
             <div className="absolute left-0 top-0 bottom-8 flex items-center">
               <div className="flex flex-col items-center justify-between h-full py-1">
-                <span style={{ color: '#64748B', fontSize: '8px' }}>Hoch</span>
+                <span style={{ ...T.footer, fontSize: '0.7rem' }}>Hoch</span>
                 <span
                   className="-rotate-90 whitespace-nowrap"
-                  style={{ color: '#64748B', fontSize: '9px', fontWeight: 600, letterSpacing: '2px' }}
+                  style={{ ...T.label, fontSize: '0.7rem', letterSpacing: '2px' }}
                 >
                   KLARHEIT
                 </span>
-                <span style={{ color: '#64748B', fontSize: '8px' }}>Niedrig</span>
+                <span style={{ ...T.footer, fontSize: '0.7rem' }}>Niedrig</span>
               </div>
             </div>
             <div
@@ -365,14 +357,13 @@ export default function FinalResults({
                       backgroundColor: isActive ? `${quadrant.color}1A` : 'rgba(255,255,255,0.02)',
                       borderRight: layout.col === 0 ? '1px solid rgba(255,255,255,0.06)' : 'none',
                       borderBottom: layout.row === 0 ? '1px solid rgba(255,255,255,0.06)' : 'none',
-                      opacity: 1,
                     }}
                   >
                     <Icon
                       className="mb-2"
                       style={{
-                        width: isActive ? 28 : 18,
-                        height: isActive ? 28 : 18,
+                        width: isActive ? 28 : 20,
+                        height: isActive ? 28 : 20,
                         color: isActive ? quadrant.color : '#ffffff',
                       }}
                       strokeWidth={1.5}
@@ -380,7 +371,7 @@ export default function FinalResults({
                     <span
                       className="text-center font-semibold"
                       style={{
-                        fontSize: isActive ? '0.9rem' : '0.8rem',
+                        fontSize: isActive ? '1rem' : '0.85rem',
                         color: isActive ? '#F1F5F9' : '#ffffff',
                       }}
                     >
@@ -397,11 +388,11 @@ export default function FinalResults({
             </div>
             {/* X-axis label */}
             <div className="flex items-center justify-between mt-2 px-1">
-              <span style={{ color: '#64748B', fontSize: '8px' }}>Niedrig</span>
-              <span style={{ color: '#64748B', fontSize: '9px', fontWeight: 600, letterSpacing: '2px' }}>
+              <span style={{ ...T.footer, fontSize: '0.7rem' }}>Niedrig</span>
+              <span style={{ ...T.label, fontSize: '0.7rem', letterSpacing: '2px' }}>
                 UMSETZUNG
               </span>
-              <span style={{ color: '#64748B', fontSize: '8px' }}>Hoch</span>
+              <span style={{ ...T.footer, fontSize: '0.7rem' }}>Hoch</span>
             </div>
           </div>
 
@@ -419,10 +410,10 @@ export default function FinalResults({
                 <div className="flex items-start gap-3">
                   <ActiveIcon className="w-5 h-5 shrink-0 mt-0.5" style={{ color: matrixQuadrant.color }} strokeWidth={1.5} />
                   <div>
-                    <h4 style={{ color: '#F1F5F9', fontWeight: 600, fontSize: '1.1rem' }}>
+                    <h4 style={T.subheading}>
                       {matrixQuadrant.title}
                     </h4>
-                    <p className="mt-2" style={{ color: '#CBD5E1', fontSize: '0.95rem', lineHeight: 1.7 }}>
+                    <p className="mt-2" style={T.body}>
                       {matrixQuadrant.text}
                     </p>
                   </div>
@@ -432,7 +423,7 @@ export default function FinalResults({
           })()}
         </motion.div>
 
-        {/* CTA — Consultation only (no lead capture) */}
+        {/* CTA — Consultation */}
         <motion.div
           className="rounded-2xl p-8 md:p-10"
           style={{ background: 'linear-gradient(135deg, #0A2540, #0E3054)' }}
@@ -441,10 +432,10 @@ export default function FinalResults({
           {consultSubmitted ? (
             <div className="text-center py-4">
               <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: '#39A958' }} strokeWidth={1.5} />
-              <h3 style={{ color: '#F1F5F9', fontSize: '1.25rem', fontWeight: 700 }}>
+              <h3 style={T.heading}>
                 Vielen Dank, {consultName.split(' ')[0]}!
               </h3>
-              <p className="mt-2" style={{ color: '#94A3B8', fontSize: '0.9rem' }}>
+              <p className="mt-2" style={T.caption}>
                 Wir melden uns innerhalb von 24 Stunden bei Ihnen.
               </p>
             </div>
@@ -454,13 +445,10 @@ export default function FinalResults({
                 <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}>
                   <Calendar className="w-7 h-7" style={{ color: '#E7E44D' }} strokeWidth={1.5} />
                 </div>
-                <h3 style={{ color: '#F1F5F9', fontSize: '1.5rem', fontWeight: 700 }}>
+                <h3 style={T.heading}>
                   Lassen Sie uns über Ihr Ergebnis sprechen
                 </h3>
-                <p
-                  className="mt-4 mx-auto max-w-lg"
-                  style={{ color: '#94A3B8', fontSize: '0.9rem', lineHeight: 1.8 }}
-                >
+                <p className="mt-4 mx-auto max-w-lg" style={T.body}>
                   Auf Basis Ihrer Antworten und ergänzender Recherche durch uns erstellen wir einen erweiterten,
                   kostenfreien Positionierungs-Check für Ihr Unternehmen und besprechen die Ergebnisse in einem
                   persönlichen, 1-stündigen Gespräch.
@@ -471,50 +459,50 @@ export default function FinalResults({
                 <div className="text-center mt-6">
                   <button
                     onClick={() => setConsultOpen(true)}
-                    className="inline-block px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-[1.02] hover:brightness-110"
-                    style={{ backgroundColor: '#E7E44D', color: '#0A2540' }}
+                    className="inline-block px-8 py-4 rounded-xl font-bold transition-all hover:scale-[1.02] hover:brightness-110"
+                    style={{ backgroundColor: '#E7E44D', color: '#0A2540', fontSize: '1rem' }}
                   >
                     Gespräch vereinbaren
                   </button>
-                  <p className="mt-4" style={{ color: '#CBD5E1', fontSize: '1rem', fontWeight: 500 }}>
+                  <p className="mt-4" style={{ ...T.body, fontWeight: 500 }}>
                     Kostenfrei · Unverbindlich · Persönlich
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleConsultSubmit} className="max-w-md mx-auto space-y-4 text-left mt-6">
                   <div>
-                    <label htmlFor="fin-c-name" className="block mb-1" style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Name *</label>
+                    <label htmlFor="fin-c-name" className="block mb-1" style={T.caption}>Name *</label>
                     <input id="fin-c-name" type="text" value={consultName} onChange={(e) => setConsultName(e.target.value)}
                       placeholder="Ihr vollständiger Name" required className={inputClass} style={inputStyle} />
                   </div>
                   <div>
-                    <label htmlFor="fin-c-email" className="block mb-1" style={{ color: '#94A3B8', fontSize: '0.8rem' }}>E-Mail *</label>
+                    <label htmlFor="fin-c-email" className="block mb-1" style={T.caption}>E-Mail *</label>
                     <input id="fin-c-email" type="email" value={consultEmail} onChange={(e) => setConsultEmail(e.target.value)}
                       placeholder="ihre@email.de" required className={inputClass} style={inputStyle} />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="fin-c-phone" className="block mb-1" style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Telefon</label>
+                      <label htmlFor="fin-c-phone" className="block mb-1" style={T.caption}>Telefon</label>
                       <input id="fin-c-phone" type="tel" value={consultPhone} onChange={(e) => setConsultPhone(e.target.value)}
                         placeholder="Optional" className={inputClass} style={inputStyle} />
                     </div>
                     <div>
-                      <label htmlFor="fin-c-company" className="block mb-1" style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Unternehmen</label>
+                      <label htmlFor="fin-c-company" className="block mb-1" style={T.caption}>Unternehmen</label>
                       <input id="fin-c-company" type="text" value={consultCompany} onChange={(e) => setConsultCompany(e.target.value)}
                         placeholder="Optional" className={inputClass} style={inputStyle} />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="fin-c-msg" className="block mb-1" style={{ color: '#94A3B8', fontSize: '0.8rem' }}>Nachricht</label>
+                    <label htmlFor="fin-c-msg" className="block mb-1" style={T.caption}>Nachricht</label>
                     <textarea id="fin-c-msg" value={consultMessage} onChange={(e) => setConsultMessage(e.target.value)}
                       placeholder="z.B. spezifische Fragen zu meinem Ergebnis" rows={3}
                       className="w-full px-0 py-2 bg-transparent border-0 border-b outline-none transition-colors focus:border-[#00ADE0] resize-none"
-                      style={{ borderBottomColor: 'rgba(255,255,255,0.1)', color: '#F1F5F9', fontSize: '0.9rem' }} />
+                      style={{ borderBottomColor: 'rgba(255,255,255,0.1)', color: '#F1F5F9', fontSize: '1rem' }} />
                   </div>
                   <label className="flex items-start gap-2 cursor-pointer">
                     <input type="checkbox" checked={consultDsgvo} onChange={(e) => setConsultDsgvo(e.target.checked)}
                       className="mt-1 w-4 h-4 rounded accent-[#00ADE0]" required />
-                    <span style={{ color: '#64748B', fontSize: '0.75rem', lineHeight: 1.5 }}>
+                    <span style={{ ...T.footer, lineHeight: 1.5 }}>
                       Ich stimme der Verarbeitung meiner Daten gemäß der{' '}
                       <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="underline hover:text-[#94A3B8]" style={{ color: '#64748B' }}>Datenschutzerklärung</a>{' '}
                       zu. *
@@ -522,8 +510,8 @@ export default function FinalResults({
                   </label>
                   <button type="submit"
                     disabled={!consultDsgvo || !consultName.trim() || !consultEmail.trim() || consultSubmitting}
-                    className="w-full py-3.5 rounded-xl font-bold text-lg transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ backgroundColor: '#E7E44D', color: '#0A2540' }}
+                    className="w-full py-3.5 rounded-xl font-bold transition-all hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ backgroundColor: '#E7E44D', color: '#0A2540', fontSize: '1rem' }}
                   >
                     {consultSubmitting ? 'Wird gesendet...' : 'Gespräch vereinbaren'}
                   </button>
@@ -541,23 +529,23 @@ export default function FinalResults({
           <button
             onClick={onReset}
             className="transition-colors"
-            style={{ color: '#64748B', fontSize: '0.85rem' }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = '#94A3B8')}
-            onMouseLeave={(e) => (e.currentTarget.style.color = '#64748B')}
+            style={T.caption}
+            onMouseEnter={(e) => (e.currentTarget.style.color = '#F1F5F9')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = '#94A3B8')}
           >
             Check wiederholen
           </button>
           <div className="space-y-2">
-            <p style={{ color: '#64748B', fontSize: '0.75rem' }}>
+            <p style={T.footer}>
               ideenparc GmbH · Mandlstraße 26 · 80802 München
             </p>
-            <p style={{ color: '#64748B', fontSize: '0.7rem' }}>
+            <p style={{ ...T.footer, fontSize: '0.75rem' }}>
               Ein Projekt von GoldenWing Digital
             </p>
             <div className="mt-1 space-x-3">
-              <a href="https://www.ideenparc.net/kontaktseite-deutsch/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Impressum</a>
-              <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>Datenschutz</a>
-              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={{ color: '#64748B', fontSize: '0.75rem' }}>ideenparc.net</a>
+              <a href="https://www.ideenparc.net/kontaktseite-deutsch/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.footer}>Impressum</a>
+              <a href="https://www.ideenparc.net/elementor-882/" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.footer}>Datenschutz</a>
+              <a href="https://www.ideenparc.net" target="_blank" rel="noopener noreferrer" className="hover:text-[#94A3B8] transition-colors" style={T.footer}>ideenparc.net</a>
             </div>
           </div>
         </motion.div>

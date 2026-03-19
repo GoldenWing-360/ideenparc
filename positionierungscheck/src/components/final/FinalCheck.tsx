@@ -27,6 +27,15 @@ function getActiveStep(phase: Phase, blockId?: string): number {
   return 0;
 }
 
+// Unified typography
+const T = {
+  label: { fontSize: '0.75rem', color: '#94A3B8', fontWeight: 600 } as const,
+  caption: { fontSize: '0.85rem', color: '#94A3B8' } as const,
+  body: { fontSize: '1rem', color: '#CBD5E1', lineHeight: 1.7 } as const,
+  subheading: { fontSize: '1.25rem', color: '#F1F5F9', fontWeight: 600 } as const,
+  heading: { fontSize: '1.5rem', color: '#F1F5F9', fontWeight: 700 } as const,
+};
+
 export default function FinalCheck() {
   const assessment = useAssessment();
   const evaluation = useEvaluation(assessment.answers);
@@ -230,7 +239,7 @@ export default function FinalCheck() {
                     {isActive ? (
                       <span
                         className="text-white font-semibold whitespace-nowrap"
-                        style={{ fontSize: '11px' }}
+                        style={{ fontSize: '0.75rem' }}
                       >
                         {name}
                       </span>
@@ -238,7 +247,7 @@ export default function FinalCheck() {
                       <span
                         className="font-semibold"
                         style={{
-                          fontSize: '12px',
+                          fontSize: '0.75rem',
                           color: isCompleted ? '#39A958' : 'rgba(255,255,255,0.4)',
                         }}
                       >
@@ -289,7 +298,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
                 className="mb-6 leading-tight"
-                style={{ color: '#F1F5F9', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 700 }}
+                style={{ color: '#F1F5F9', fontSize: 'clamp(1.75rem, 5vw, 2.5rem)', fontWeight: 700 }}
               >
                 Sie haben eine starke relevante Positionierung!
                 <br />
@@ -302,7 +311,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
                 className="mb-6 mx-auto max-w-[520px]"
-                style={{ color: '#94A3B8', fontSize: '1.1rem', lineHeight: 1.7 }}
+                style={T.body}
               >
                 Der ideenparc Positionierungscheck zeigt Ihnen in wenigen Minuten, wie klar,
                 differenziert und wirksam Ihr Unternehmen im Markt positioniert ist.
@@ -314,7 +323,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.6 }}
                 className="mb-10 mx-auto max-w-[520px]"
-                style={{ color: '#94A3B8', fontSize: '1.1rem', lineHeight: 1.7 }}
+                style={T.body}
               >
                 Der Check basiert auf über 25 Jahren Projekterfahrung von ideenparc und mehr als
                 100 Positionierungs- und Marketingprojekten. Das zugrunde liegende Ideal-Real-Optimal
@@ -334,13 +343,10 @@ export default function FinalCheck() {
                   { value: '\u2713', label: 'Klarheit' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
-                    <div
-                      className="font-bold"
-                      style={{ color: '#00ADE0', fontSize: '1.5rem' }}
-                    >
+                    <div className="font-bold" style={{ color: '#00ADE0', ...T.heading }}>
                       {stat.value}
                     </div>
-                    <div style={{ color: '#64748B', fontSize: '0.8rem' }}>{stat.label}</div>
+                    <div style={T.caption}>{stat.label}</div>
                   </div>
                 ))}
               </motion.div>
@@ -351,10 +357,11 @@ export default function FinalCheck() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.0, duration: 0.6 }}
                 onClick={handleStart}
-                className="px-10 py-4 rounded-xl font-semibold text-lg transition-all hover:scale-[1.02]"
+                className="px-10 py-4 rounded-xl font-semibold transition-all hover:scale-[1.02]"
                 style={{
                   backgroundColor: '#00ADE0',
                   color: '#fff',
+                  fontSize: '1rem',
                 }}
               >
                 Check starten
@@ -378,17 +385,14 @@ export default function FinalCheck() {
               />
               <p
                 className="uppercase tracking-[3px] mb-4"
-                style={{ color: currentBlock.color, fontSize: '14px', fontWeight: 600 }}
+                style={{ ...T.label, color: currentBlock.color }}
               >
                 {blockLabels[currentBlock.id]}
               </p>
-              <h2
-                className="mb-4"
-                style={{ color: '#F1F5F9', fontSize: '1.75rem', fontWeight: 600, lineHeight: 1.4 }}
-              >
+              <h2 className="mb-4" style={{ ...T.heading, lineHeight: 1.4 }}>
                 {currentBlock.title}
               </h2>
-              <p className="mb-10" style={{ color: '#94A3B8', fontSize: '1.05rem', lineHeight: 1.7 }}>
+              <p className="mb-10" style={T.body}>
                 {currentBlock.subtitle}
               </p>
               <button
@@ -419,7 +423,7 @@ export default function FinalCheck() {
               {/* Block label */}
               <p
                 className="uppercase tracking-[3px] mb-6 text-center"
-                style={{ color: currentBlock?.color, fontSize: '15px', fontWeight: 600 }}
+                style={{ ...T.label, color: currentBlock?.color }}
               >
                 {blockLabels[currentBlock?.id || '']}
               </p>
@@ -429,7 +433,7 @@ export default function FinalCheck() {
                 className="text-center mb-10"
                 style={{
                   color: '#F1F5F9',
-                  fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+                  fontSize: 'clamp(1.05rem, 2.5vw, 1.25rem)',
                   fontWeight: 400,
                   lineHeight: 1.6,
                 }}
@@ -468,7 +472,7 @@ export default function FinalCheck() {
                   style={{
                     backgroundColor: currentBlock?.color || '#00ADE0',
                     color: '#fff',
-                    fontSize: '0.95rem',
+                    fontSize: '1rem',
                     cursor: hasAnswered ? 'pointer' : 'not-allowed',
                   }}
                 >
@@ -522,7 +526,7 @@ export default function FinalCheck() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
                 className="uppercase tracking-[4px] mb-6"
-                style={{ color: '#475569', fontSize: '11px', fontWeight: 600 }}
+                style={T.label}
               >
                 Ihr Reifegrad
               </motion.p>
@@ -543,7 +547,7 @@ export default function FinalCheck() {
                 transition={{ delay: 1.8, duration: 0.6 }}
                 className="mt-6"
               >
-                <span style={{ color: '#F1F5F9', fontSize: '1.5rem', fontWeight: 600 }}>
+                <span style={T.heading}>
                   {evaluation.maturityLevel.title}
                 </span>
               </motion.div>
