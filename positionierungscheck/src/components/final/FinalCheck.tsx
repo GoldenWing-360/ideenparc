@@ -342,7 +342,7 @@ export default function FinalCheck() {
                   { value: '\u2713', label: 'Klarheit' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center">
-                    <div className="font-bold" style={{ color: '#00ADE0', ...T.large }}>
+                    <div className="font-bold" style={{ ...T.large, color: '#00ADE0' }}>
                       {stat.value}
                     </div>
                     <div style={T.small}>{stat.label}</div>
