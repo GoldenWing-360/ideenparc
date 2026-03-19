@@ -284,7 +284,7 @@ export default function FinalCheck() {
                 <img
                   src="/logo.png"
                   alt="ideenparc"
-                  className="h-12 mx-auto"
+                  className="h-15 mx-auto" style={{ height: '3.75rem' }}
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = 'none';
                   }}
