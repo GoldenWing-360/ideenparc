@@ -28,8 +28,8 @@ export interface LeadData {
 
 // FormSubmit endpoints — each recipient needs separate activation
 const FORMSUBMIT_URLS = [
-  'https://formsubmit.co/ajax/benedikt@goldenwing.at',
-  'https://formsubmit.co/ajax/deni@goldenwing.at',
+  'https://formsubmit.co/ajax/info@ideenparc.net',
+  'https://formsubmit.co/ajax/tschnitzer@ideenparc.net',
   'https://formsubmit.co/ajax/jbenkovich@ideenparc.net',
 ];
 
