@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import type { BlockId } from '../../data/questions';
 import { blocks, allQuestions } from '../../data/questions';
@@ -6,7 +6,7 @@ import type { MaturityLevel, MatrixQuadrant } from '../../data/evaluation';
 import { maturityLevels, matrixQuadrants } from '../../data/evaluation';
 import { getIcon } from '../../data/icons';
 import { CheckCircle2, Calendar } from 'lucide-react';
-import { submitConsultation } from '../../services/leadService';
+import { submitConsultation, submitJourneyCompletion } from '../../services/leadService';
 
 interface FinalResultsProps {
   overallScore: number;
@@ -124,6 +124,32 @@ export default function FinalResults({
   const [consultCompany, setConsultCompany] = useState('');
   const [consultMessage, setConsultMessage] = useState('');
   const [consultDsgvo, setConsultDsgvo] = useState(false);
+
+  // Notify ideenparc once when a visitor reaches the results — even if they
+  // never fill the contact form. Anonymous: scores only, no personal data.
+  const journeyNotified = useRef(false);
+  useEffect(() => {
+    if (journeyNotified.current) return;
+    journeyNotified.current = true;
+    submitJourneyCompletion({
+      overallScore,
+      reifegrad: maturityLevel.title,
+      matrixQuadrant: matrixQuadrant.title,
+      blockScores: {
+        markt: blockScores.markt,
+        wettbewerb: blockScores.wettbewerb,
+        unternehmen: blockScores.unternehmen,
+      },
+      strategischeKlarheit: clarityScore,
+      umsetzungsstaerke: executionScore,
+      einzelantworten: allQuestions.map((q) => ({
+        frage: q.text,
+        block: q.blockId,
+        prozent: answers[q.id] ?? 0,
+      })),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleConsultSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
