@@ -348,17 +348,19 @@ export default function FinalResults({
             </span>
           </div>
 
-          {/* Y-axis label — separate row above grid */}
-          <div className="flex items-center justify-between mb-2 px-1">
-            <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 500 }}>Hoch</span>
-            <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '3px' }}>
-              KLARHEIT
-            </span>
-            <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 500 }}>Niedrig</span>
-          </div>
           <div className="relative">
+            <div className="flex gap-2">
+            {/* Y-axis label — vertical, left of the grid */}
             <div
-              className="grid grid-cols-2 overflow-hidden rounded-xl"
+              className="flex flex-col items-center justify-between shrink-0 py-1"
+              style={{ width: '1.25rem', color: '#CBD5E1', fontSize: '0.8rem' }}
+            >
+              <span style={{ fontWeight: 500, writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>Hoch</span>
+              <span style={{ fontWeight: 600, letterSpacing: '3px', writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>KLARHEIT</span>
+              <span style={{ fontWeight: 500, writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>Niedrig</span>
+            </div>
+            <div
+              className="grid grid-cols-2 overflow-hidden rounded-xl flex-1"
               style={{ border: '1px solid rgba(255,255,255,0.06)', minHeight: '240px' }}
             >
               {quadrantLayout.map((layout) => {
@@ -406,8 +408,9 @@ export default function FinalResults({
                 );
               })}
             </div>
+            </div>
             {/* X-axis label */}
-            <div className="flex items-center justify-between mt-3 px-1">
+            <div className="flex items-center justify-between mt-3 px-1" style={{ marginLeft: '1.75rem' }}>
               <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 500 }}>Niedrig</span>
               <span style={{ color: '#CBD5E1', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '3px' }}>
                 UMSETZUNG
